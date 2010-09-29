@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AntConfiguration">
+    <defaultAnt bundledAnt="true" />
+  </component>
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Javac" />
     <resourceExtensions>
@@ -252,6 +255,50 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/com/kitfox/svg/svg-salamander/1.0/svg-salamander-1.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: com.miglayout:miglayout:swing:3.7.3">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/miglayout/miglayout/3.7.3/miglayout-3.7.3-swing.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/com/miglayout/miglayout/3.7.3/miglayout-3.7.3-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/miglayout/miglayout/3.7.3/miglayout-3.7.3-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.swinglabs:swingx:1.6">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/swinglabs/swingx/1.6/swingx-1.6.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/swinglabs/swingx/1.6/swingx-1.6-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/swinglabs/swingx/1.6/swingx-1.6-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: com.jhlabs:filters:2.0.235">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/jhlabs/filters/2.0.235/filters-2.0.235.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/com/jhlabs/filters/2.0.235/filters-2.0.235-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/jhlabs/filters/2.0.235/filters-2.0.235-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.swinglabs:swing-worker:1.1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/swinglabs/swing-worker/1.1/swing-worker-1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/swinglabs/swing-worker/1.1/swing-worker-1.1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/swinglabs/swing-worker/1.1/swing-worker-1.1-sources.jar!/" />
       </SOURCES>
     </library>
   </component>
