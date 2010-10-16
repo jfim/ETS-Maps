@@ -31,18 +31,56 @@ public class SvgNavigableMap implements NavigableMap {
 
 	@Inject
 	public SvgNavigableMap(ExceptionDisplayer exceptionDisplayer) {
+		this.exceptionDisplayer = exceptionDisplayer;
+
 		// Create the SVG universe to load the SVG files
 		SVGUniverse universe = new SVGUniverse();
 
 		// Load a hardcoded diagram
+		loadDiagram(universe, "/Bolduc House Floor Plan.svg");
+
+		// Extract landmarks from the map and remove their visual representation from the diagram
+		loadLandmarks();
+
+		// Remove scale information from the map
+
+		// Remove navigation layer from the map
+	}
+
+	public SVGDiagram getDiagram() {
+		return diagram;
+	}
+
+	public List<? extends Landmark> getLandmarks() {
+		return landmarks;
+	}
+
+	public Route getRouteBetweenLandmarks(Landmark origin, Landmark destination) {
+		// TODO Implement this method
+		throw new RuntimeException("Unimplemented method!");
+	}
+
+	private void loadDiagram(SVGUniverse universe, String name) {
 		try {
-			diagram = universe.getDiagram(SvgMapComponent.class.getResource("/Bolduc House Floor Plan.svg")
+			long start = System.currentTimeMillis();
+
+			if (DEBUG) {
+				logger.debug("Loading diagram...");
+			}
+
+			diagram = universe.getDiagram(SvgMapComponent.class.getResource(name)
 					.toURI(), true);
+
+			if (DEBUG) {
+				logger.debug("Loaded diagram in " +
+						(System.currentTimeMillis() - start) + " ms");
+			}
 		} catch (URISyntaxException e) {
 			this.exceptionDisplayer.displayException(e);
 		}
+	}
 
-		// Extract landmarks from the map and remove their visual representation from the diagram
+	private void loadLandmarks() {
 		if (DEBUG) {
 			logger.debug("Loading landmarks...");
 		}
@@ -78,18 +116,5 @@ public class SvgNavigableMap implements NavigableMap {
 		if (DEBUG) {
 			logger.debug("Done loading " + landmarks.size() + " landmark(s)");
 		}
-	}
-
-	public SVGDiagram getDiagram() {
-		return diagram;
-	}
-
-	public List<? extends Landmark> getLandmarks() {
-		return landmarks;
-	}
-
-	public Route getRouteBetweenLandmarks(Landmark origin, Landmark destination) {
-		// TODO Implement this method
-		throw new RuntimeException("Unimplemented method!");
 	}
 }
