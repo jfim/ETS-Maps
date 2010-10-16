@@ -340,6 +340,7 @@
       </CLASSES>
       <JAVADOC>
         <root url="jar://$MAVEN_REPOSITORY$/com/google/code/annas/annas/21-02-10/annas-21-02-10-javadoc.jar!/" />
+        <root url="http://annas.googlecode.com/svn/trunk/rethink/docs" />
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/com/google/code/annas/annas/21-02-10/annas-21-02-10-sources.jar!/" />
