@@ -5,8 +5,11 @@ import im.jeanfrancois.etsmaps.model.NavigableMap;
 
 import java.util.List;
 
+
 /**
- * Document me!
+ * SVG implementation of a navigable map. See the documentation as for
+ * SVG-specific annotations that must be added to the SVG file to handle
+ * scaling, such as size/orientation/navigation markers.
  *
  * @author jfim
  */

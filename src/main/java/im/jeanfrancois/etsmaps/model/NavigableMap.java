@@ -1,11 +1,11 @@
 package im.jeanfrancois.etsmaps.model;
 
-import im.jeanfrancois.etsmaps.model.Landmark;
-
 import java.util.List;
 
+
 /**
- * Document me!
+ * Map interface that contains all the necessary information to
+ * determine the landmarks in a loaded map and navigating between them.
  *
  * @author jfim
  */
