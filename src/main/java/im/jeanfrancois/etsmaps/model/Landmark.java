@@ -7,4 +7,5 @@ package im.jeanfrancois.etsmaps.model;
  * @author jfim
  */
 public interface Landmark {
+	public String getName();
 }

@@ -7,6 +7,8 @@ import im.jeanfrancois.etsmaps.model.Landmark;
 import im.jeanfrancois.etsmaps.model.NavigableMap;
 import im.jeanfrancois.etsmaps.model.Route;
 import im.jeanfrancois.etsmaps.ui.svg.SvgMapComponent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -21,14 +23,18 @@ import java.util.List;
  * @author fim
  */
 public class SvgNavigableMap implements NavigableMap {
-	private SVGDiagram diagram;
+	private static final boolean DEBUG = true;
+	private static final Logger logger = LoggerFactory.getLogger(SvgNavigableMap.class);
+	private ArrayList<SvgLandmark> landmarks = new ArrayList<SvgLandmark>();
 	private ExceptionDisplayer exceptionDisplayer;
+	private SVGDiagram diagram;
 
 	@Inject
 	public SvgNavigableMap(ExceptionDisplayer exceptionDisplayer) {
-
+		// Create the SVG universe to load the SVG files
 		SVGUniverse universe = new SVGUniverse();
 
+		// Load a hardcoded diagram
 		try {
 			diagram = universe.getDiagram(SvgMapComponent.class.getResource("/Bolduc House Floor Plan.svg")
 					.toURI(), true);
@@ -36,7 +42,11 @@ public class SvgNavigableMap implements NavigableMap {
 			this.exceptionDisplayer.displayException(e);
 		}
 
-		// FIXME Test: Remove all text from the diagram
+		// Extract landmarks from the map and remove their visual representation from the diagram
+		if (DEBUG) {
+			logger.debug("Loading landmarks...");
+		}
+
 		List<SVGElement> elementsToExplore = new ArrayList<SVGElement>();
 		elementsToExplore.add(diagram.getRoot());
 
@@ -50,6 +60,13 @@ public class SvgNavigableMap implements NavigableMap {
 			if (lastElement instanceof Text) {
 				try {
 					lastElement.getParent().removeChild(lastElement);
+
+					final SvgLandmark landmark = new SvgLandmark((Text) lastElement);
+					landmarks.add(landmark);
+
+					if (DEBUG) {
+						logger.debug("Loaded landmark " + landmark.getName());
+					}
 				} catch (SVGElementException e) {
 					exceptionDisplayer.displayException(e);
 				}
@@ -57,19 +74,22 @@ public class SvgNavigableMap implements NavigableMap {
 				elementsToExplore.addAll(lastElement.getChildren(new ArrayList<SVGElement>()));
 			}
 		}
+
+		if (DEBUG) {
+			logger.debug("Done loading " + landmarks.size() + " landmark(s)");
+		}
+	}
+
+	public SVGDiagram getDiagram() {
+		return diagram;
 	}
 
 	public List<? extends Landmark> getLandmarks() {
-		// TODO Implement this method
-		throw new RuntimeException("Unimplemented method!");
+		return landmarks;
 	}
 
 	public Route getRouteBetweenLandmarks(Landmark origin, Landmark destination) {
 		// TODO Implement this method
 		throw new RuntimeException("Unimplemented method!");
-	}
-
-	public SVGDiagram getDiagram() {
-		return diagram;
 	}
 }
