@@ -8,14 +8,23 @@ package im.jeanfrancois.etsmaps.model.svg;
 public class NavigationEdge {
 	private NavigationNode first;
 	private NavigationNode second;
+	private float length;
 
 	public NavigationEdge(NavigationNode first, NavigationNode second) {
 		this.first = first;
 		this.second = second;
+
+		float dx = first.getX() - second.getX();
+		float dy = first.getY() - second.getY();
+		length = (float) Math.sqrt((dx * dx) + (dy * dy));
 	}
 
 	public NavigationNode getFirst() {
 		return first;
+	}
+
+	public float getLength() {
+		return length;
 	}
 
 	public NavigationNode getSecond() {
