@@ -191,17 +191,6 @@
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
   <component name="libraryTable">
-    <library name="Maven: commons-graph:commons-graph:0.8.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/commons-graph/commons-graph/0.8.1/commons-graph-0.8.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/commons-graph/commons-graph/0.8.1/commons-graph-0.8.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/commons-graph/commons-graph/0.8.1/commons-graph-0.8.1-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: junit:junit:4.7">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.7/junit-4.7.jar!/" />
@@ -332,6 +321,61 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-core/0.9.25/logback-core-0.9.25-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: net.walend:digraph:alpha-0.20">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/walend/digraph/alpha-0.20/digraph-alpha-0.20.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/net/walend/digraph/alpha-0.20/digraph-alpha-0.20-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/walend/digraph/alpha-0.20/digraph-alpha-0.20-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: net.walend:path:alpha-0.20">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/walend/path/alpha-0.20/path-alpha-0.20.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/net/walend/path/alpha-0.20/path-alpha-0.20-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/walend/path/alpha-0.20/path-alpha-0.20-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: net.walend:collection:alpha-0.20">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/walend/collection/alpha-0.20/collection-alpha-0.20.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/net/walend/collection/alpha-0.20/collection-alpha-0.20-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/walend/collection/alpha-0.20/collection-alpha-0.20-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: net.walend:grid:alpha-0.20">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/walend/grid/alpha-0.20/grid-alpha-0.20.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/net/walend/grid/alpha-0.20/grid-alpha-0.20-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/walend/grid/alpha-0.20/grid-alpha-0.20-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: net.walend:semiring:alpha-0.20">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/walend/semiring/alpha-0.20/semiring-alpha-0.20.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/net/walend/semiring/alpha-0.20/semiring-alpha-0.20-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/walend/semiring/alpha-0.20/semiring-alpha-0.20-sources.jar!/" />
       </SOURCES>
     </library>
   </component>

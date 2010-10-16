@@ -21,10 +21,35 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
+<!--		<dependency>
 			<groupId>commons-graph</groupId>
 			<artifactId>commons-graph</artifactId>
 			<version>0.8.1</version>
+		</dependency> -->
+		<dependency>
+			<groupId>net.walend</groupId>
+			<artifactId>digraph</artifactId>
+			<version>alpha-0.20</version>
+		</dependency>
+		<dependency>
+			<groupId>net.walend</groupId>
+			<artifactId>path</artifactId>
+			<version>alpha-0.20</version>
+		</dependency>
+		<dependency>
+			<groupId>net.walend</groupId>
+			<artifactId>collection</artifactId>
+			<version>alpha-0.20</version>
+		</dependency>
+		<dependency>
+			<groupId>net.walend</groupId>
+			<artifactId>grid</artifactId>
+			<version>alpha-0.20</version>
+		</dependency>
+		<dependency>
+			<groupId>net.walend</groupId>
+			<artifactId>semiring</artifactId>
+			<version>alpha-0.20</version>
 		</dependency>
 		<dependency>
 			<groupId>com.kitfox.svg</groupId>
