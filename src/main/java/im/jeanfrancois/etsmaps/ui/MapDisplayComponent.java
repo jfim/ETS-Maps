@@ -1,4 +1,4 @@
-package im.jeanfrancois.etsmaps;
+package im.jeanfrancois.etsmaps.ui;
 
 /**
  * Interface implemented by map display components.

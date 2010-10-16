@@ -1,7 +1,9 @@
-package im.jeanfrancois.etsmaps;
+package im.jeanfrancois.etsmaps.ui.svg;
 
 import com.google.inject.Inject;
 import com.kitfox.svg.*;
+import im.jeanfrancois.etsmaps.ExceptionDisplayer;
+import im.jeanfrancois.etsmaps.ui.MapDisplayComponent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,7 +40,7 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
 
 		SVGUniverse universe = new SVGUniverse();
 		try {
-			diagram = universe.getDiagram(SvgMapComponent.class.getResource("/Map_of_USA_with_state_names.svg").toURI(), true);
+			diagram = universe.getDiagram(SvgMapComponent.class.getResource("/Bolduc House Floor Plan.svg").toURI(), true);
 		} catch (URISyntaxException e) {
 			this.exceptionDisplayer.displayException(e, this);
 		}

@@ -7,6 +7,8 @@
 package im.jeanfrancois.etsmaps;
 
 import com.google.inject.AbstractModule;
+import im.jeanfrancois.etsmaps.ui.MapDisplayComponent;
+import im.jeanfrancois.etsmaps.ui.svg.SvgMapComponent;
 
 public class EtsMapsModule extends AbstractModule {
 	protected void configure() {

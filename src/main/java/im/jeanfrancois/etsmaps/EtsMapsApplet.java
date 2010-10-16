@@ -2,6 +2,7 @@ package im.jeanfrancois.etsmaps;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import im.jeanfrancois.etsmaps.ui.MapDisplayComponent;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
