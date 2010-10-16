@@ -1,8 +1,10 @@
 package im.jeanfrancois.etsmaps.ui.svg;
 
 import com.google.inject.Inject;
-import com.kitfox.svg.*;
+import com.kitfox.svg.SVGDiagram;
+import com.kitfox.svg.SVGException;
 import im.jeanfrancois.etsmaps.ExceptionDisplayer;
+import im.jeanfrancois.etsmaps.model.svg.SvgNavigableMap;
 import im.jeanfrancois.etsmaps.ui.MapDisplayComponent;
 
 import javax.swing.*;
@@ -11,9 +13,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.geom.AffineTransform;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -33,39 +32,9 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
 
 	@SuppressWarnings({"unchecked"})
 	@Inject
-	public SvgMapComponent(ExceptionDisplayer exceptionDisplayer) {
+	public SvgMapComponent(ExceptionDisplayer exceptionDisplayer, SvgNavigableMap map) {
+		diagram = map.getDiagram();
 		this.exceptionDisplayer = exceptionDisplayer;
-
-		SVGUniverse universe = new SVGUniverse();
-
-		try {
-			diagram = universe.getDiagram(SvgMapComponent.class.getResource("/Bolduc House Floor Plan.svg")
-					.toURI(), true);
-		} catch (URISyntaxException e) {
-			this.exceptionDisplayer.displayException(e, this);
-		}
-
-		// FIXME Test: Remove all text from the diagram
-		List<SVGElement> elementsToExplore = new ArrayList<SVGElement>();
-		elementsToExplore.add(diagram.getRoot());
-
-		while (!elementsToExplore.isEmpty()) {
-			// Get and remove the last element
-			final int lastElementIndex = elementsToExplore.size() - 1;
-
-			SVGElement lastElement = elementsToExplore.get(lastElementIndex);
-			elementsToExplore.remove(lastElementIndex);
-
-			if (lastElement instanceof Text) {
-				try {
-					lastElement.getParent().removeChild(lastElement);
-				} catch (SVGElementException e) {
-					exceptionDisplayer.displayException(e, this);
-				}
-			} else {
-				elementsToExplore.addAll(lastElement.getChildren(new ArrayList<SVGElement>()));
-			}
-		}
 
 		final MouseAdapter adapter = new MouseAdapter() {
 			@Override
