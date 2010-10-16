@@ -21,11 +21,11 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
-<!--		<dependency>
-			<groupId>commons-graph</groupId>
-			<artifactId>commons-graph</artifactId>
-			<version>0.8.1</version>
-		</dependency> -->
+		<!--		<dependency>
+					<groupId>commons-graph</groupId>
+					<artifactId>commons-graph</artifactId>
+					<version>0.8.1</version>
+				</dependency> -->
 		<dependency>
 			<groupId>net.walend</groupId>
 			<artifactId>digraph</artifactId>
@@ -86,6 +86,11 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>0.9.25</version>
+		</dependency>
+		<dependency>
+			<groupId>ca.odell</groupId>
+			<artifactId>glazedlists</artifactId>
+			<version>0.9.7</version>
 		</dependency>
 	</dependencies>
 </project>

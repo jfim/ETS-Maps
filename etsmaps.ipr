@@ -378,6 +378,17 @@
         <root url="jar://$MAVEN_REPOSITORY$/net/walend/semiring/alpha-0.20/semiring-alpha-0.20-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: ca.odell:glazedlists:0.9.7">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/ca/odell/glazedlists/0.9.7/glazedlists-0.9.7.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/ca/odell/glazedlists/0.9.7/glazedlists-0.9.7-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/ca/odell/glazedlists/0.9.7/glazedlists-0.9.7-sources.jar!/" />
+      </SOURCES>
+    </library>
   </component>
 </project>
 
