@@ -6,6 +6,8 @@ import com.kitfox.svg.SVGException;
 import im.jeanfrancois.etsmaps.ExceptionDisplayer;
 import im.jeanfrancois.etsmaps.model.svg.SvgNavigableMap;
 import im.jeanfrancois.etsmaps.ui.MapDisplayComponent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,6 +32,9 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
 	private double xTranslation = 0.0;
 	private double yTranslation = 0.0;
 
+	private static final boolean DEBUG = true;
+	private static final Logger logger = LoggerFactory.getLogger(SvgMapComponent.class);
+
 	@SuppressWarnings({"unchecked"})
 	@Inject
 	public SvgMapComponent(ExceptionDisplayer exceptionDisplayer, SvgNavigableMap map) {
@@ -47,9 +52,11 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
 				xTranslation -= (lastMouseEvent.getX() - e.getX());
 				yTranslation -= (lastMouseEvent.getY() - e.getY());
 
-				System.out.println("Requesting repaint");
-				System.out.println("xTranslation = " + xTranslation);
-				System.out.println("yTranslation = " + yTranslation);
+				if (DEBUG) {
+					logger.debug("Requesting repaint");
+					logger.debug("xTranslation = " + xTranslation);
+					logger.debug("yTranslation = " + yTranslation);
+				}
 
 				fastUpdate = false;
 				dirty = true;
@@ -68,9 +75,11 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
 				xTranslation -= (lastMouseEvent.getX() - e.getX());
 				yTranslation -= (lastMouseEvent.getY() - e.getY());
 
-				System.out.println("Requesting repaint");
-				System.out.println("xTranslation = " + xTranslation);
-				System.out.println("yTranslation = " + yTranslation);
+				if (DEBUG) {
+					logger.debug("Requesting repaint");
+					logger.debug("xTranslation = " + xTranslation);
+					logger.debug("yTranslation = " + yTranslation);
+				}
 
 				fastUpdate = true;
 				dirty = true;
@@ -101,7 +110,9 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
 			AffineTransform transform = new AffineTransform();
 			transform.setToScale(scaleFactor, scaleFactor);
 			transform.translate(xTranslation, yTranslation);
-			System.out.println("Repainting");
+
+			if (DEBUG)
+				logger.debug("Repainting");
 
 			g2d.setTransform(transform);
 
