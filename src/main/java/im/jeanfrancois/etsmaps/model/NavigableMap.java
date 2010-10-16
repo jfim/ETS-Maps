@@ -11,4 +11,5 @@ import java.util.List;
  */
 public interface NavigableMap {
 	public List<? extends Landmark> getLandmarks();
+	public Route getRouteBetweenLandmarks(Landmark origin, Landmark destination);
 }
