@@ -26,7 +26,7 @@
 					<artifactId>commons-graph</artifactId>
 					<version>0.8.1</version>
 				</dependency> -->
-		<dependency>
+<!--		<dependency>
 			<groupId>net.walend</groupId>
 			<artifactId>digraph</artifactId>
 			<version>alpha-0.20</version>
@@ -50,6 +50,11 @@
 			<groupId>net.walend</groupId>
 			<artifactId>semiring</artifactId>
 			<version>alpha-0.20</version>
+		</dependency> -->
+		<dependency>
+			<groupId>com.google.code.annas</groupId>
+			<artifactId>annas</artifactId>
+			<version>21-02-10</version>
 		</dependency>
 		<dependency>
 			<groupId>com.kitfox.svg</groupId>

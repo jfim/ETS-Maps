@@ -323,61 +323,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-core/0.9.25/logback-core-0.9.25-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: net.walend:digraph:alpha-0.20">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/walend/digraph/alpha-0.20/digraph-alpha-0.20.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/net/walend/digraph/alpha-0.20/digraph-alpha-0.20-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/walend/digraph/alpha-0.20/digraph-alpha-0.20-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: net.walend:path:alpha-0.20">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/walend/path/alpha-0.20/path-alpha-0.20.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/net/walend/path/alpha-0.20/path-alpha-0.20-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/walend/path/alpha-0.20/path-alpha-0.20-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: net.walend:collection:alpha-0.20">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/walend/collection/alpha-0.20/collection-alpha-0.20.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/net/walend/collection/alpha-0.20/collection-alpha-0.20-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/walend/collection/alpha-0.20/collection-alpha-0.20-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: net.walend:grid:alpha-0.20">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/walend/grid/alpha-0.20/grid-alpha-0.20.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/net/walend/grid/alpha-0.20/grid-alpha-0.20-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/walend/grid/alpha-0.20/grid-alpha-0.20-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: net.walend:semiring:alpha-0.20">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/walend/semiring/alpha-0.20/semiring-alpha-0.20.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/net/walend/semiring/alpha-0.20/semiring-alpha-0.20-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/walend/semiring/alpha-0.20/semiring-alpha-0.20-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: net.java.dev.glazedlists:glazedlists_java15:1.8.0">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/glazedlists/glazedlists_java15/1.8.0/glazedlists_java15-1.8.0.jar!/" />
@@ -387,6 +332,17 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/glazedlists/glazedlists_java15/1.8.0/glazedlists_java15-1.8.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: com.google.code.annas:annas:21-02-10">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/annas/annas/21-02-10/annas-21-02-10.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/annas/annas/21-02-10/annas-21-02-10-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/annas/annas/21-02-10/annas-21-02-10-sources.jar!/" />
       </SOURCES>
     </library>
   </component>
