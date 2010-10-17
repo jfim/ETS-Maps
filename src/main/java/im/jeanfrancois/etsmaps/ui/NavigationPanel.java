@@ -32,7 +32,7 @@ public class NavigationPanel extends JPanel {
 	@Inject
 	public NavigationPanel(final NavigableMap map) {
 		this.map = map;
-		setLayout(new MigLayout("wrap 2", "", "[][][][grow,fill]"));
+		setLayout(new MigLayout("wrap 2", "", "[][][][][grow,fill]"));
 
 		EventList<Landmark> landmarks = new BasicEventList<Landmark>();
 		landmarks.addAll(map.getLandmarks());
