@@ -1,9 +1,15 @@
 package im.jeanfrancois.etsmaps.model.svg;
 
+import annas.graph.DefaultArc;
+import annas.graph.DefaultWeight;
+import annas.graph.GraphPath;
+import annas.graph.UndirectedGraph;
+import annas.graph.util.Dijkstra;
 import com.google.inject.Inject;
 import com.kitfox.svg.*;
 import im.jeanfrancois.etsmaps.ExceptionDisplayer;
 import im.jeanfrancois.etsmaps.model.Landmark;
+import im.jeanfrancois.etsmaps.model.Leg;
 import im.jeanfrancois.etsmaps.model.NavigableMap;
 import im.jeanfrancois.etsmaps.model.Route;
 import im.jeanfrancois.etsmaps.ui.svg.SvgMapComponent;
@@ -14,6 +20,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.PathIterator;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -33,6 +40,7 @@ public class SvgNavigableMap implements NavigableMap {
 	private ArrayList<NavigationNode> nodes = new ArrayList<NavigationNode>();
 	private ExceptionDisplayer exceptionDisplayer;
 	private SVGDiagram diagram;
+	private UndirectedGraph<NavigationNode, DefaultArc<NavigationNode>> graph = new UndirectedGraph<NavigationNode, DefaultArc<NavigationNode>>();
 
 	@Inject
 	public SvgNavigableMap(ExceptionDisplayer exceptionDisplayer) {
@@ -54,12 +62,15 @@ public class SvgNavigableMap implements NavigableMap {
 	}
 
 	private void createEdge(NavigationNode first, NavigationNode second) {
-		edges.add(new NavigationEdge(first, second));
+		final NavigationEdge navigationEdge = new NavigationEdge(first, second);
+		edges.add(navigationEdge);
+		graph.addArc(first, second, new DefaultWeight((double) navigationEdge.getLength()));
 	}
 
 	private NavigationNode createNode(float[] point) {
 		final NavigationNode node = new NavigationNode(point[0], point[1]);
 		nodes.add(node);
+		graph.addNode(node);
 
 		return node;
 	}
@@ -103,8 +114,50 @@ public class SvgNavigableMap implements NavigableMap {
 	}
 
 	public Route getRouteBetweenLandmarks(Landmark origin, Landmark destination) {
-		// TODO Implement this method
-		throw new RuntimeException("Unimplemented method!");
+		Dijkstra<NavigationNode, DefaultArc<NavigationNode>> dijkstra = new Dijkstra<NavigationNode, DefaultArc<NavigationNode>>(graph);
+		final GraphPath<NavigationNode, DefaultArc<NavigationNode>> path = dijkstra.execute(getClosestNodeForLandmark(origin), getClosestNodeForLandmark(destination));
+		Iterator<NavigationNode> pathIterator = path.getIterator();
+
+		final ArrayList<NavigationNode> navigationNodes = new ArrayList<NavigationNode>();
+		while (pathIterator.hasNext()) {
+			NavigationNode navigationNode = pathIterator.next();
+			navigationNodes.add(navigationNode);
+		}
+
+		return new Route() {
+			public int getLegCount() {
+				return path.size() - 1;
+			}
+
+			public Leg getLeg(final int index) {
+				return new Leg() {
+					public String getDescription() {
+						return "Walk";
+					}
+
+					public float getLengthInMetres() {
+						return new NavigationEdge(navigationNodes.get(index), navigationNodes.get(index + 1)).getLength();
+					}
+				};
+			}
+		};
+	}
+
+	private NavigationNode getClosestNodeForLandmark(Landmark landmark) {
+		SvgLandmark svgLandmark = (SvgLandmark) landmark;
+
+		NavigationNode closestNode = null;
+		float closestNodeDistance = Float.MAX_VALUE;
+
+		for (NavigationNode node : nodes) {
+			float nodeDistance = node.getSquaredDistanceFrom(svgLandmark.getX(), svgLandmark.getY());
+			if (nodeDistance < closestNodeDistance) {
+				closestNodeDistance = nodeDistance;
+				closestNode = node;
+			}
+		}
+
+		return closestNode;
 	}
 
 	private void loadDiagram(SVGUniverse universe, String name) {
