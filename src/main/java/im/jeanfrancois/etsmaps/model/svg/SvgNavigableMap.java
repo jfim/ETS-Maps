@@ -157,7 +157,36 @@ public class SvgNavigableMap implements NavigableMap {
 			public Leg getLeg(final int index) {
 				return new Leg() {
 					public String getDescription() {
-						return "Walk";
+						double angle = Math.atan2(
+								navigationNodes.get(index + 1).getY() - navigationNodes.get(index).getY(),
+								navigationNodes.get(index + 1).getX() - navigationNodes.get(index).getX()
+						);
+
+						String heading = "";
+
+						double x = Math.cos(angle);
+
+						// Flip the y coordinate so it is in math coordinates, not screen coordinates
+						double y = -Math.sin(angle);
+
+						if (0.5 < y)
+							heading = "North";
+						else if (y < -0.5)
+							heading = "South";
+
+						if (x < -0.5) {
+							if (heading.isEmpty())
+								heading = "West";
+							else
+								heading += "west";
+						} else if (0.5 < x) {
+							if (heading.isEmpty())
+								heading = "East";
+							else
+								heading += "east";
+						}
+
+						return heading;
 					}
 
 					public float getLengthInMetres() {
