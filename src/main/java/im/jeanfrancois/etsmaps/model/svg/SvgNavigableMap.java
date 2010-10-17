@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 
 import java.awt.geom.AffineTransform;
 import java.awt.geom.PathIterator;
+import java.awt.geom.Point2D;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -137,6 +138,14 @@ public class SvgNavigableMap implements NavigableMap {
 
 					public float getLengthInMetres() {
 						return new NavigationEdge(navigationNodes.get(index), navigationNodes.get(index + 1)).getLength();
+					}
+
+					public Point2D getOrigin() {
+						return new Point2D.Float(navigationNodes.get(index).getX(), navigationNodes.get(index).getY());
+					}
+
+					public Point2D getDestination() {
+						return new Point2D.Float(navigationNodes.get(index + 1).getX(), navigationNodes.get(index + 1).getY());
 					}
 				};
 			}
