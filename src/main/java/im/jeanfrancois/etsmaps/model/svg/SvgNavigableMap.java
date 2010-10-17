@@ -42,6 +42,7 @@ public class SvgNavigableMap implements NavigableMap {
 	private ExceptionDisplayer exceptionDisplayer;
 	private SVGDiagram diagram;
 	private UndirectedGraph<NavigationNode, DefaultArc<NavigationNode>> graph = new UndirectedGraph<NavigationNode, DefaultArc<NavigationNode>>();
+	private float unitsPerMetre = 1.0f;
 
 	@Inject
 	public SvgNavigableMap(ExceptionDisplayer exceptionDisplayer) {
@@ -57,6 +58,7 @@ public class SvgNavigableMap implements NavigableMap {
 		loadLandmarks();
 
 		// Remove scale information from the map
+		loadScaleInfo();
 
 		// Remove navigation layer from the map
 		loadNavigationInfo();
@@ -65,7 +67,8 @@ public class SvgNavigableMap implements NavigableMap {
 	private void createEdge(NavigationNode first, NavigationNode second) {
 		final NavigationEdge navigationEdge = new NavigationEdge(first, second);
 		edges.add(navigationEdge);
-		graph.addArc(first, second, new DefaultWeight((double) navigationEdge.getLength()));
+		graph.addArc(first, second,
+				new DefaultWeight((double) navigationEdge.getLength()));
 	}
 
 	private NavigationNode createNode(float[] point) {
@@ -96,6 +99,25 @@ public class SvgNavigableMap implements NavigableMap {
 		return group;
 	}
 
+	private NavigationNode getClosestNodeForLandmark(Landmark landmark) {
+		SvgLandmark svgLandmark = (SvgLandmark) landmark;
+
+		NavigationNode closestNode = null;
+		float closestNodeDistance = Float.MAX_VALUE;
+
+		for (NavigationNode node : nodes) {
+			float nodeDistance = node.getSquaredDistanceFrom(svgLandmark.getX(),
+					svgLandmark.getY());
+
+			if (nodeDistance < closestNodeDistance) {
+				closestNodeDistance = nodeDistance;
+				closestNode = node;
+			}
+		}
+
+		return closestNode;
+	}
+
 	public SVGDiagram getDiagram() {
 		return diagram;
 	}
@@ -116,10 +138,12 @@ public class SvgNavigableMap implements NavigableMap {
 
 	public Route getRouteBetweenLandmarks(Landmark origin, Landmark destination) {
 		Dijkstra<NavigationNode, DefaultArc<NavigationNode>> dijkstra = new Dijkstra<NavigationNode, DefaultArc<NavigationNode>>(graph);
-		final GraphPath<NavigationNode, DefaultArc<NavigationNode>> path = dijkstra.execute(getClosestNodeForLandmark(origin), getClosestNodeForLandmark(destination));
+		final GraphPath<NavigationNode, DefaultArc<NavigationNode>> path = dijkstra.execute(getClosestNodeForLandmark(origin),
+				getClosestNodeForLandmark(destination));
 		Iterator<NavigationNode> pathIterator = path.getIterator();
 
 		final ArrayList<NavigationNode> navigationNodes = new ArrayList<NavigationNode>();
+
 		while (pathIterator.hasNext()) {
 			NavigationNode navigationNode = pathIterator.next();
 			navigationNodes.add(navigationNode);
@@ -137,36 +161,29 @@ public class SvgNavigableMap implements NavigableMap {
 					}
 
 					public float getLengthInMetres() {
-						return new NavigationEdge(navigationNodes.get(index), navigationNodes.get(index + 1)).getLength();
+						return new NavigationEdge(navigationNodes.get(index),
+								navigationNodes.get(index +
+										1)).getLength() / unitsPerMetre;
 					}
 
 					public Point2D getOrigin() {
-						return new Point2D.Float(navigationNodes.get(index).getX(), navigationNodes.get(index).getY());
+						return new Point2D.Float(navigationNodes.get(index)
+								.getX(),
+								navigationNodes.get(index)
+										.getY());
 					}
 
 					public Point2D getDestination() {
-						return new Point2D.Float(navigationNodes.get(index + 1).getX(), navigationNodes.get(index + 1).getY());
+						return new Point2D.Float(navigationNodes.get(index +
+								1)
+								.getX(),
+								navigationNodes.get(index +
+										1)
+										.getY());
 					}
 				};
 			}
 		};
-	}
-
-	private NavigationNode getClosestNodeForLandmark(Landmark landmark) {
-		SvgLandmark svgLandmark = (SvgLandmark) landmark;
-
-		NavigationNode closestNode = null;
-		float closestNodeDistance = Float.MAX_VALUE;
-
-		for (NavigationNode node : nodes) {
-			float nodeDistance = node.getSquaredDistanceFrom(svgLandmark.getX(), svgLandmark.getY());
-			if (nodeDistance < closestNodeDistance) {
-				closestNodeDistance = nodeDistance;
-				closestNode = node;
-			}
-		}
-
-		return closestNode;
 	}
 
 	private void loadDiagram(SVGUniverse universe, String name) {
@@ -309,5 +326,69 @@ public class SvgNavigableMap implements NavigableMap {
 			logger.debug("Loaded " + nodes.size() + " node(s) and " +
 					edges.size() + " edge(s).");
 		}
+	}
+
+	private void loadScaleInfo() {
+		if (DEBUG) {
+			logger.debug("Loading navigation info...");
+		}
+
+		// Find the scale layer
+		Group group = findTopLevelGroup("Scale_1m");
+
+		if (group == null) {
+			return;
+		}
+
+		// Remove the navigation layer from the diagram
+		try {
+			diagram.getRoot().removeChild(group);
+		} catch (SVGElementException e) {
+			exceptionDisplayer.displayException(e);
+		}
+
+		// Get all LINE objects from the later
+		List<Line> lines = new ArrayList<Line>();
+
+		List<SVGElement> elementsToEvaluate = new ArrayList<SVGElement>();
+		elementsToEvaluate.addAll(group.getChildren(new ArrayList()));
+
+		while (!elementsToEvaluate.isEmpty()) {
+			int lastElementIndex = elementsToEvaluate.size() - 1;
+			SVGElement lastElement = elementsToEvaluate.get(lastElementIndex);
+			elementsToEvaluate.remove(lastElementIndex);
+
+			if (lastElement instanceof Line) {
+				lines.add((Line) lastElement);
+			} else {
+				elementsToEvaluate.addAll(lastElement.getChildren(new ArrayList()));
+			}
+		}
+
+		if (lines.isEmpty()) {
+			return;
+		}
+
+		Line line = lines.get(0);
+
+		PathIterator iterator = line.getShape()
+				.getPathIterator(new AffineTransform());
+		float[] currentPoint = new float[6];
+
+		iterator.currentSegment(currentPoint);
+
+		float x1 = currentPoint[0];
+		float y1 = currentPoint[1];
+
+		iterator.next();
+		iterator.currentSegment(currentPoint);
+
+		float x2 = currentPoint[0];
+		float y2 = currentPoint[1];
+
+		float dx = x2 - x1;
+		float dy = y2 - y1;
+
+		unitsPerMetre = (float) Math.sqrt((dx * dx) + (dy * dy));
 	}
 }
