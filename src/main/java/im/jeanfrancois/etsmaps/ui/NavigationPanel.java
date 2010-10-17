@@ -16,6 +16,8 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 
@@ -84,7 +86,8 @@ public class NavigationPanel extends JPanel {
 							return leg.getDescription();
 						}
 
-						return leg.getLengthInMetres() + " m";
+						NumberFormat formatter = new DecimalFormat("0.0");
+						return formatter.format(leg.getLengthInMetres()) + " m";
 					}
 				}));
 		add(new JScrollPane(table), "width 100%, span 2");
