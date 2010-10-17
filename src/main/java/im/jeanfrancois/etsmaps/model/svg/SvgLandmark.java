@@ -16,6 +16,8 @@ import java.util.List;
 public class SvgLandmark implements Landmark {
 	private String name;
 	private Text textSvgNode;
+	private float x;
+	private float y;
 
 	public SvgLandmark(Text landmarkText) {
 		textSvgNode = landmarkText;
@@ -41,6 +43,9 @@ public class SvgLandmark implements Landmark {
 				}
 			}
 		}
+
+		x = textSvgNode.getShape().getBounds().x;
+		y = textSvgNode.getShape().getBounds().y;
 	}
 
 	public String getName() {
@@ -50,5 +55,13 @@ public class SvgLandmark implements Landmark {
 	@Override
 	public String toString() {
 		return getName();
+	}
+
+	public float getX() {
+		return x;
+	}
+
+	public float getY() {
+		return y;
 	}
 }
