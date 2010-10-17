@@ -4,6 +4,8 @@ import com.google.inject.Inject;
 import com.kitfox.svg.SVGDiagram;
 import com.kitfox.svg.SVGException;
 import im.jeanfrancois.etsmaps.ExceptionDisplayer;
+import im.jeanfrancois.etsmaps.model.Leg;
+import im.jeanfrancois.etsmaps.model.Route;
 import im.jeanfrancois.etsmaps.model.svg.SvgNavigableMap;
 import im.jeanfrancois.etsmaps.ui.MapDisplayComponent;
 import org.slf4j.Logger;
@@ -15,6 +17,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Path2D;
 
 
 /**
@@ -23,6 +26,9 @@ import java.awt.geom.AffineTransform;
  * @author jfim
  */
 public class SvgMapComponent extends JComponent implements MapDisplayComponent {
+	private static final boolean DEBUG = true;
+	private static final Logger logger = LoggerFactory.getLogger(SvgMapComponent.class);
+	private Path2D.Float routeShape = new Path2D.Float();
 	private final ExceptionDisplayer exceptionDisplayer;
 	private MouseEvent lastMouseEvent = null;
 	private SVGDiagram diagram;
@@ -32,12 +38,10 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
 	private double xTranslation = 0.0;
 	private double yTranslation = 0.0;
 
-	private static final boolean DEBUG = true;
-	private static final Logger logger = LoggerFactory.getLogger(SvgMapComponent.class);
-
 	@SuppressWarnings({"unchecked"})
 	@Inject
-	public SvgMapComponent(ExceptionDisplayer exceptionDisplayer, SvgNavigableMap map) {
+	public SvgMapComponent(ExceptionDisplayer exceptionDisplayer,
+	                       SvgNavigableMap map) {
 		diagram = map.getDiagram();
 		this.exceptionDisplayer = exceptionDisplayer;
 
@@ -94,6 +98,28 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
 		addMouseWheelListener(adapter);
 	}
 
+	public void overlayRoute(Route route) {
+		routeShape = new Path2D.Float();
+
+		if ((route == null) || (route.getLegCount() == 0)) {
+			return;
+		}
+
+		Leg leg = route.getLeg(0);
+		routeShape.moveTo(leg.getOrigin().getX(), leg.getOrigin().getY());
+		routeShape.lineTo(leg.getDestination().getX(),
+				leg.getDestination().getY());
+
+		for (int i = 1; i < route.getLegCount(); ++i) {
+			leg = route.getLeg(i);
+			routeShape.lineTo(leg.getDestination().getX(),
+					leg.getDestination().getY());
+		}
+
+		dirty = true;
+		repaint();
+	}
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		if (dirty) {
@@ -111,8 +137,9 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
 			transform.setToScale(scaleFactor, scaleFactor);
 			transform.translate(xTranslation, yTranslation);
 
-			if (DEBUG)
+			if (DEBUG) {
 				logger.debug("Repainting");
+			}
 
 			g2d.setTransform(transform);
 
@@ -121,6 +148,10 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
 			} catch (SVGException e) {
 				exceptionDisplayer.displayException(e, this);
 			}
+
+			g2d.setColor(Color.RED);
+			g2d.setStroke(new BasicStroke(5.0f));
+			g2d.draw(routeShape);
 
 			dirty = false;
 		}

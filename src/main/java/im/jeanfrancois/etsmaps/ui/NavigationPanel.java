@@ -27,11 +27,9 @@ import java.util.ArrayList;
  */
 public class NavigationPanel extends JPanel {
 	private EventList<Leg> routeLegs = new BasicEventList<Leg>();
-	private NavigableMap map;
 
 	@Inject
-	public NavigationPanel(final NavigableMap map) {
-		this.map = map;
+	public NavigationPanel(final NavigableMap map, final MapDisplayComponent mapDisplayComponent) {
 		setLayout(new MigLayout("wrap 2", "", "[][][][][grow,fill]"));
 
 		EventList<Landmark> landmarks = new BasicEventList<Landmark>();
@@ -64,6 +62,8 @@ public class NavigationPanel extends JPanel {
 				routeLegs.clear();
 				routeLegs.addAll(legs);
 				lock.writeLock().unlock();
+
+				mapDisplayComponent.overlayRoute(route);
 			}
 		});
 
