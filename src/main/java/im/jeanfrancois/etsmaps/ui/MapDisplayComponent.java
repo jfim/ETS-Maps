@@ -1,4 +1,6 @@
-package im.jeanfrancois.etsmaps;
+package im.jeanfrancois.etsmaps.ui;
+
+import im.jeanfrancois.etsmaps.model.Route;
 
 /**
  * Interface implemented by map display components.
@@ -6,4 +8,5 @@ package im.jeanfrancois.etsmaps;
  * @author jfim
  */
 public interface MapDisplayComponent {
+	public void overlayRoute(Route route);
 }

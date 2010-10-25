@@ -191,17 +191,6 @@
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
   <component name="libraryTable">
-    <library name="Maven: commons-graph:commons-graph:0.8.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/commons-graph/commons-graph/0.8.1/commons-graph-0.8.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/commons-graph/commons-graph/0.8.1/commons-graph-0.8.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/commons-graph/commons-graph/0.8.1/commons-graph-0.8.1-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: junit:junit:4.7">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.7/junit-4.7.jar!/" />
@@ -299,6 +288,62 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/swinglabs/swing-worker/1.1/swing-worker-1.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.slf4j:slf4j-api:1.6.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.6.0/slf4j-api-1.6.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.6.0/slf4j-api-1.6.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.6.0/slf4j-api-1.6.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: ch.qos.logback:logback-classic:0.9.25">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-classic/0.9.25/logback-classic-0.9.25.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-classic/0.9.25/logback-classic-0.9.25-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-classic/0.9.25/logback-classic-0.9.25-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: ch.qos.logback:logback-core:0.9.25">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-core/0.9.25/logback-core-0.9.25.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-core/0.9.25/logback-core-0.9.25-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-core/0.9.25/logback-core-0.9.25-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: net.java.dev.glazedlists:glazedlists_java15:1.8.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/glazedlists/glazedlists_java15/1.8.0/glazedlists_java15-1.8.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/glazedlists/glazedlists_java15/1.8.0/glazedlists_java15-1.8.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/glazedlists/glazedlists_java15/1.8.0/glazedlists_java15-1.8.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: com.google.code.annas:annas:21-02-10">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/annas/annas/21-02-10/annas-21-02-10.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/annas/annas/21-02-10/annas-21-02-10-javadoc.jar!/" />
+        <root url="http://annas.googlecode.com/svn/trunk/rethink/docs" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/annas/annas/21-02-10/annas-21-02-10-sources.jar!/" />
       </SOURCES>
     </library>
   </component>

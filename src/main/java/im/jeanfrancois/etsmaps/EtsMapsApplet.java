@@ -2,10 +2,13 @@ package im.jeanfrancois.etsmaps;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import im.jeanfrancois.etsmaps.ui.MapDisplayComponent;
+import im.jeanfrancois.etsmaps.ui.NavigationPanel;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
+
 
 /**
  * ETS Maps Applet
@@ -29,13 +32,15 @@ public class EtsMapsApplet extends JApplet {
 		Injector injector = Guice.createInjector(new EtsMapsModule());
 
 		ExceptionDisplayer displayer = injector.getInstance(ExceptionDisplayer.class);
+		NavigationPanel panel = injector.getInstance(NavigationPanel.class);
 
 		try {
 			// Set layout
-			setLayout(new MigLayout("", "[grow, fill]", "[grow, fill]"));
+			setLayout(new MigLayout("", "[grow, fill][]", "[grow, fill]"));
 
 			// Add single map display component
 			add((JComponent) injector.getInstance(MapDisplayComponent.class));
+			add(panel);
 		} catch (RuntimeException re) {
 			displayer.displayException(re);
 		}
