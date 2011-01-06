@@ -52,7 +52,7 @@ public class SvgNavigableMap implements NavigableMap {
 		SVGUniverse universe = new SVGUniverse();
 
 		// Load a hardcoded diagram
-		loadDiagram(universe, "/Bolduc House Floor Plan.svg");
+		loadDiagram(universe, "/plan-ets-1a.svg");
 
 		// Extract landmarks from the map and remove their visual representation from the diagram
 		loadLandmarks();
@@ -348,9 +348,34 @@ public class SvgNavigableMap implements NavigableMap {
 		}
 
 		// For each line
-		// Check if there is a node for the first point
-		// Check if there is a node for the second point
-		// Create an edge from the two nodes
+		for (Line line : lines) {
+			PathIterator iterator = line.getShape().getPathIterator(new AffineTransform());
+
+			float[] firstPoint = new float[6];
+			iterator.currentSegment(firstPoint);
+			iterator.next();
+
+			float[] secondPoint = new float[6];
+			iterator.currentSegment(secondPoint);
+
+			// Check if there is a node for the first point
+			NavigationNode firstNode = getNodeForCoordinates(firstPoint);
+
+			if(firstNode == null) {
+				firstNode = createNode(firstPoint);
+			}
+
+			// Check if there is a node for the second point
+			NavigationNode secondNode = getNodeForCoordinates(secondPoint);
+
+			if(secondNode == null) {
+				secondNode = createNode(secondPoint);
+			}
+
+			// Create an edge from the two nodes
+			createEdge(firstNode, secondNode);
+		}
+
 		if (DEBUG) {
 			logger.debug("Loaded " + nodes.size() + " node(s) and " +
 					edges.size() + " edge(s).");
