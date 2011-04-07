@@ -38,7 +38,7 @@ public class EtsMapsApplet extends JApplet {
 			// Set layout
 			setLayout(new MigLayout("", "[][grow, fill]", "[grow, fill]"));
 
-			add(panel);
+			add(panel, "width 310");
 
             // Add single map display component
             add((JComponent) injector.getInstance(MapDisplayComponent.class));
