@@ -32,7 +32,9 @@ public class NavigationPanel extends JPanel {
 
 	@Inject
 	public NavigationPanel(final NavigableMap map, final MapDisplayComponent mapDisplayComponent) {
-		setLayout(new MigLayout("wrap 2", "", "[][][][][grow,fill]"));
+		setLayout(new MigLayout("wrap 2", "[][grow, fill]", "[][][][][][grow,fill]"));
+
+        add(new JLabel(new ImageIcon(NavigationPanel.class.getClassLoader().getResource("etsmaps-logo.png"))), "span");
 
 		EventList<Landmark> landmarks = new BasicEventList<Landmark>();
 		landmarks.addAll(map.getLandmarks());
@@ -47,7 +49,7 @@ public class NavigationPanel extends JPanel {
 		add(destinationComboBox);
 
 		final JButton button = new JButton("Navigate");
-		add(button, "span 2");
+		add(button, "span 2, alignx right");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Route route = map.getRouteBetweenLandmarks((Landmark) originComboBox.getSelectedItem(),
@@ -78,7 +80,9 @@ public class NavigationPanel extends JPanel {
 					}
 
 					public String getColumnName(int i) {
-						return "";
+                        if(i == 0)
+                            return "Direction";
+                        return "Distance";
 					}
 
 					public Object getColumnValue(Leg leg, int i) {
