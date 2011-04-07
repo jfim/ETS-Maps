@@ -2,6 +2,7 @@ package im.jeanfrancois.etsmaps.ui;
 
 import ca.odell.glazedlists.BasicEventList;
 import ca.odell.glazedlists.EventList;
+import ca.odell.glazedlists.SortedList;
 import ca.odell.glazedlists.gui.TableFormat;
 import ca.odell.glazedlists.swing.EventComboBoxModel;
 import ca.odell.glazedlists.swing.EventTableModel;
@@ -12,6 +13,7 @@ import im.jeanfrancois.etsmaps.model.Leg;
 import im.jeanfrancois.etsmaps.model.NavigableMap;
 import im.jeanfrancois.etsmaps.model.Route;
 import net.miginfocom.swing.MigLayout;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 
 /**
@@ -38,17 +41,28 @@ public class NavigationPanel extends JPanel {
 
 		EventList<Landmark> landmarks = new BasicEventList<Landmark>();
 		landmarks.addAll(map.getLandmarks());
+        EventList<Landmark> sortedLandmarks = new SortedList<Landmark>(landmarks, new Comparator<Landmark>() {
+            @Override
+            public int compare(Landmark o1, Landmark o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
 
-		add(new JLabel("From"));
+		add(new JLabel("De"));
 
-		final JComboBox originComboBox = new JComboBox(new EventComboBoxModel<Landmark>(landmarks));
+		final JComboBox originComboBox = new JComboBox(new EventComboBoxModel<Landmark>(sortedLandmarks));
 		add(originComboBox);
-		add(new JLabel("To"));
 
-		final JComboBox destinationComboBox = new JComboBox(new EventComboBoxModel<Landmark>(landmarks));
+        AutoCompleteDecorator.decorate(originComboBox);
+
+		add(new JLabel("Vers"));
+
+		final JComboBox destinationComboBox = new JComboBox(new EventComboBoxModel<Landmark>(sortedLandmarks));
 		add(destinationComboBox);
 
-		final JButton button = new JButton("Navigate");
+        AutoCompleteDecorator.decorate(destinationComboBox);
+
+		final JButton button = new JButton("Naviguer");
 		add(button, "span 2, alignx right");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
