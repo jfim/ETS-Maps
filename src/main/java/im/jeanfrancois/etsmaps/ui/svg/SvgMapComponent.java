@@ -150,7 +150,7 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
 			}
 
 			g2d.setColor(Color.RED);
-			g2d.setStroke(new BasicStroke(5.0f));
+			g2d.setStroke(new BasicStroke(3.0f));
 			g2d.draw(routeShape);
 
 			dirty = false;
