@@ -170,20 +170,20 @@ public class SvgNavigableMap implements NavigableMap {
 						double y = -Math.sin(angle);
 
 						if (0.5 < y)
-							heading = "North";
+							heading = "Nord";
 						else if (y < -0.5)
-							heading = "South";
+							heading = "Sud";
 
 						if (x < -0.5) {
 							if (heading.isEmpty())
-								heading = "West";
+								heading = "Ouest";
 							else
-								heading += "west";
+								heading += "-Ouest";
 						} else if (0.5 < x) {
 							if (heading.isEmpty())
-								heading = "East";
+								heading = "Est";
 							else
-								heading += "east";
+								heading += "-Est";
 						}
 
 						return heading;
