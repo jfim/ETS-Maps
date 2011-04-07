@@ -39,6 +39,7 @@
 		<line fill="none" stroke="#FF0000" stroke-miterlimit="10" x1="274.167" y1="150.833" x2="316.501" y2="150.833"/>
 		<line fill="none" stroke="#FF0000" stroke-miterlimit="10" x1="316.501" y1="150.833" x2="314.501" y2="186.167"/>
 		<line fill="none" stroke="#FF0000" stroke-miterlimit="10" x1="287.501" y1="184" x2="314.501" y2="186.167"/>
+		<line fill="none" stroke="#FF0000" stroke-miterlimit="10" x1="138.5" y1="196.167" x2="138.5" y2="198.167"/>
 	</g>
 	<g>
 		<line fill="none" stroke="#FF0000" stroke-miterlimit="10" x1="82.167" y1="150.833" x2="82.167" y2="196.167"/>
@@ -70,6 +71,7 @@
 		<line fill="none" stroke="#FF0000" stroke-miterlimit="10" x1="274.167" y1="150.833" x2="316.501" y2="150.833"/>
 		<line fill="none" stroke="#FF0000" stroke-miterlimit="10" x1="316.501" y1="150.833" x2="314.501" y2="186.167"/>
 		<line fill="none" stroke="#FF0000" stroke-miterlimit="10" x1="287.501" y1="184" x2="314.501" y2="186.167"/>
+		<line fill="none" stroke="#FF0000" stroke-miterlimit="10" x1="138.5" y1="196.167" x2="138.5" y2="198.167"/>
 	</g>
 </g>
 <g id="Scale_1m">
@@ -97,5 +99,4 @@
 	<text transform="matrix(1 0 0 1 113.5005 228.167)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">1234</text>
 	<text transform="matrix(1 0 0 1 113.5005 101.167)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">1406</text>
 </g>
-<line fill="none" stroke="#FF0000" stroke-miterlimit="10" x1="138.5" y1="196.167" x2="138.5" y2="198.167"/>
 </svg>
