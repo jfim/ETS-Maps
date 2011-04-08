@@ -93,49 +93,106 @@
 <g id="Scale_1m">
 	<line fill="none" stroke="#45FF00" stroke-miterlimit="10" x1="99.25" y1="76.5" x2="103" y2="76.5"/>
 </g>
-<g id="Names">
-	<text transform="matrix(1 0 0 1 66.167 243.833)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1240</text>
-	<text transform="matrix(1 0 0 1 63.167 225.167)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1245</text>
-	<text transform="matrix(1 0 0 1 61.5005 212.501)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1246</text>
-	<text transform="matrix(1 0 0 1 61.5005 194.167)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1248</text>
-	<text transform="matrix(1 0 0 1 59.5005 180.167)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1250</text>
-	<text transform="matrix(1 0 0 1 109.5005 137.5)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1400</text>
-	<text transform="matrix(1 0 0 1 85.5005 163.5)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1340</text>
-	<text transform="matrix(1 0 0 1 104.8335 161.5)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1350</text>
-	<text transform="matrix(1 0 0 1 121.8335 161.5)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1314</text>
-	<text transform="matrix(1 0 0 1 121.8335 173.5)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1312</text>
-	<text transform="matrix(1 0 0 1 121.8335 188.167)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1310</text>
-	<text transform="matrix(1 0 0 1 103.5005 192.167)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1350</text>
-	<text transform="matrix(1 0 0 1 85.5005 190.5)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1352</text>
-	<text transform="matrix(1 0 0 1 63.167 139.5)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1410</text>
-	<text transform="matrix(1 0 0 1 85.5005 212.501)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1242</text>
-	<text transform="matrix(1 0 0 1 85.5005 230.833)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1236</text>
-	<text transform="matrix(1 0 0 1 101.125 205.166)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1262</text>
-	<text transform="matrix(1 0 0 1 113.5005 212.501)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1260</text>
-	<text transform="matrix(1 0 0 1 113.5005 228.167)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1234</text>
-	<text transform="matrix(1 0 0 1 113.5005 101.167)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1406</text>
-	<text transform="matrix(1 0 0 1 144.5005 212.501)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1226</text>
-	<text transform="matrix(1 0 0 1 165.5005 212.501)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1222</text>
-	<text transform="matrix(1 0 0 1 182.834 212.501)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1214</text>
-	<text transform="matrix(1 0 0 1 203.834 221.167)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1200</text>
-	<text transform="matrix(1 0 0 1 144.5005 160.501)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1320</text>
-	<text transform="matrix(1 0 0 1 154.5005 173.5)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1304</text>
-	<text transform="matrix(1 0 0 1 165.5005 180.167)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1302</text>
-	<text transform="matrix(1 0 0 1 182.834 180.167)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1300</text>
-	<text transform="matrix(1 0 0 1 203.834 168.667)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1172</text>
-	<text transform="matrix(1 0 0 1 267.834 173.5)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1150</text>
-	<text transform="matrix(1 0 0 1 228.168 139.5)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1504</text>
-	<text transform="matrix(1 0 0 1 230.834 120)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1502</text>
-	<text transform="matrix(1 0 0 1 232.834 102.501)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1500</text>
-	<text transform="matrix(1 0 0 1 205.167 139.5)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1506</text>
-	<text transform="matrix(1 0 0 1 181.1675 137.5)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1508</text>
-	<text transform="matrix(1 0 0 1 263.916 142.168)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1752</text>
-	<text transform="matrix(1 0 0 1 260.5 123.333)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1760</text>
-	<text transform="matrix(1 0 0 1 260.5 105.5005)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1732</text>
-	<text transform="matrix(1 0 0 1 291.168 142.168)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1754</text>
-	<text transform="matrix(1 0 0 1 302.834 144.834)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1750</text>
-	<text transform="matrix(1 0 0 1 313.5 137.5)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1700</text>
-	<text transform="matrix(1 0 0 1 284.168 163.5)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1192</text>
-	<text transform="matrix(1 0 0 1 280.834 117.167)" fill="#00FF00" font-family="'MyriadPro-Regular'" font-size="8">A-1740</text>
+<g id="Navigation_1_">
+	<text transform="matrix(1 0 0 1 78 240)" font-family="'MyriadPro-Regular'" font-size="6">240</text>
+	<text transform="matrix(1 0 0 1 105.25 240)" font-family="'MyriadPro-Regular'" font-size="6">238</text>
+	<text transform="matrix(1 0 0 1 116.5 240)" font-family="'MyriadPro-Regular'" font-size="6">230</text>
+	<text transform="matrix(1 0 0 1 154 240)" font-family="'MyriadPro-Regular'" font-size="6">220</text>
+	<text transform="matrix(1 0 0 1 203.5 238.75)" font-family="'MyriadPro-Regular'" font-size="6">212</text>
+	<text transform="matrix(1 0 0 1 208.25 243.25)" font-family="'MyriadPro-Regular'" font-size="6">210</text>
+	<text transform="matrix(1 0 0 1 227.25 238)" font-family="'MyriadPro-Regular'" font-size="6">139</text>
+	<text transform="matrix(1 0 0 1 239.75 221.75)" font-family="'MyriadPro-Regular'" font-size="6">140</text>
+	<text transform="matrix(1 0 0 1 271.5 223.75)" font-family="'MyriadPro-Regular'" font-size="6">130</text>
+	<text transform="matrix(1 0 0 1 299 222)" font-family="'MyriadPro-Regular'" font-size="6">100</text>
+	<text transform="matrix(1 0 0 1 329.5 219)" font-family="'MyriadPro-Regular'" font-size="6">800</text>
+	<text transform="matrix(1 0 0 1 319.75 208.5)" font-family="'MyriadPro-Regular'" font-size="6">840</text>
+	<text transform="matrix(1 0 0 1 331 168.25)" font-family="'MyriadPro-Regular'" font-size="6">850</text>
+	<text transform="matrix(1 0 0 1 313.25 154)" font-family="'MyriadPro-Regular'" font-size="6">700</text>
+	<text transform="matrix(1 0 0 1 304.5 153.75)" font-family="'MyriadPro-Regular'" font-size="6">750</text>
+	<text transform="matrix(1 0 0 1 296 152.25)" font-family="'MyriadPro-Regular'" font-size="6">754</text>
+	<text transform="matrix(1 0 0 1 257.25 150.75)" font-family="'MyriadPro-Regular'" font-size="6">752</text>
+	<text transform="matrix(1 0 0 1 260 161.75)" font-family="'MyriadPro-Regular'" font-size="6">186</text>
+	<text transform="matrix(1 0 0 1 253.75 167.25)" font-family="'MyriadPro-Regular'" font-size="6">180</text>
+	<text transform="matrix(1 0 0 1 250 164)" font-family="'MyriadPro-Regular'" font-size="6">182</text>
+	<text transform="matrix(1 0 0 1 268.5 169.5)" font-family="'MyriadPro-Regular'" font-size="6">150</text>
+	<text transform="matrix(1 0 0 1 233.5 202.25)" font-family="'MyriadPro-Regular'" font-size="6">160</text>
+	<text transform="matrix(1 0 0 1 222.25 196.75)" font-family="'MyriadPro-Regular'" font-size="6">170</text>
+	<text transform="matrix(1 0 0 1 231.5 161.25)" font-family="'MyriadPro-Regular'" font-size="6">176</text>
+	<text transform="matrix(1 0 0 1 224.75 163.25)" font-family="'MyriadPro-Regular'" font-size="6">174</text>
+	<text transform="matrix(1 0 0 1 207 162.75)" font-family="'MyriadPro-Regular'" font-size="6">172</text>
+	<text transform="matrix(1 0 0 1 198.25 195.5)" font-family="'MyriadPro-Regular'" font-size="6">300</text>
+	<text transform="matrix(1 0 0 1 178 195.25)" font-family="'MyriadPro-Regular'" font-size="6">302</text>
+	<text transform="matrix(1 0 0 1 157.5 197)" font-family="'MyriadPro-Regular'" font-size="6">304</text>
+	<text transform="matrix(1 0 0 1 205 232.75)" font-family="'MyriadPro-Regular'" font-size="6">200</text>
+	<text transform="matrix(1 0 0 1 181.75 232)" font-family="'MyriadPro-Regular'" font-size="6">214</text>
+	<text transform="matrix(1 0 0 1 162.75 232.5)" font-family="'MyriadPro-Regular'" font-size="6">222</text>
+	<text transform="matrix(1 0 0 1 158.25 232.5)" font-family="'MyriadPro-Regular'" font-size="6">226</text>
+	<text transform="matrix(1 0 0 1 130.25 234.5)" font-family="'MyriadPro-Regular'" font-size="6">234</text>
+	<text transform="matrix(1 0 0 1 88.5 232.5)" font-family="'MyriadPro-Regular'" font-size="6">236</text>
+	<text transform="matrix(1 0 0 1 86.75 206)" font-family="'MyriadPro-Regular'" font-size="6">242</text>
+	<text transform="matrix(1 0 0 1 105 206.5)" font-family="'MyriadPro-Regular'" font-size="6">262</text>
+	<text transform="matrix(1 0 0 1 131.75 206)" font-family="'MyriadPro-Regular'" font-size="6">260</text>
+	<text transform="matrix(1 0 0 1 78.5 225.25)" font-family="'MyriadPro-Regular'" font-size="6">243</text>
+	<text transform="matrix(1 0 0 1 78.5 213.75)" font-family="'MyriadPro-Regular'" font-size="6">246</text>
+	<text transform="matrix(1 0 0 1 78.75 195.25)" font-family="'MyriadPro-Regular'" font-size="6">248</text>
+	<text transform="matrix(1 0 0 1 77.5 167.25)" font-family="'MyriadPro-Regular'" font-size="6">250</text>
+	<text transform="matrix(1 0 0 1 87 198.25)" font-family="'MyriadPro-Regular'" font-size="6">332</text>
+	<text transform="matrix(1 0 0 1 105.5 197)" font-family="'MyriadPro-Regular'" font-size="6">330</text>
+	<text transform="matrix(1 0 0 1 135.5 190)" font-family="'MyriadPro-Regular'" font-size="6">310</text>
+	<text transform="matrix(1 0 0 1 135.5 173.75)" font-family="'MyriadPro-Regular'" font-size="6">312</text>
+	<text transform="matrix(1 0 0 1 135.75 162.5)" font-family="'MyriadPro-Regular'" font-size="6">314</text>
+	<text transform="matrix(1 0 0 1 145.5 180)" font-family="'MyriadPro-Regular'" font-size="6">324</text>
+	<text transform="matrix(1 0 0 1 145 177.5)" font-family="'MyriadPro-Regular'" font-size="6">322</text>
+	<text transform="matrix(1 0 0 1 141.75 164.25)" font-family="'MyriadPro-Regular'" font-size="6">320</text>
+	<text transform="matrix(1 0 0 1 153.25 160.25)" font-family="'MyriadPro-Regular'" font-size="6">360</text>
+	<text transform="matrix(1 0 0 1 105.5 160.75)" font-family="'MyriadPro-Regular'" font-size="6">350</text>
+	<text transform="matrix(1 0 0 1 85.25 160.25)" font-family="'MyriadPro-Regular'" font-size="6">340</text>
+	<text transform="matrix(1 0 0 1 76.25 150.5)" font-family="'MyriadPro-Regular'" font-size="6">410</text>
+	<text transform="matrix(1 0 0 1 107.75 148.5)" font-family="'MyriadPro-Regular'" font-size="6">400</text>
+	<text transform="matrix(1 0 0 1 188.5 150.5)" font-family="'MyriadPro-Regular'" font-size="6">508</text>
+	<text transform="matrix(1 0 0 1 209.25 150.5)" font-family="'MyriadPro-Regular'" font-size="6">506</text>
+	<text transform="matrix(1 0 0 1 251 132.75)" font-family="'MyriadPro-Regular'" font-size="6">504</text>
+	<text transform="matrix(1 0 0 1 251.25 123)" font-family="'MyriadPro-Regular'" font-size="6">502</text>
+	<text transform="matrix(1 0 0 1 252.5 106.5)" font-family="'MyriadPro-Regular'" font-size="6">500</text>
+	<text transform="matrix(1 0 0 1 257.5 126)" font-family="'MyriadPro-Regular'" font-size="6">760</text>
+	<text transform="matrix(1 0 0 1 257.75 108.25)" font-family="'MyriadPro-Regular'" font-size="6">764</text>
+	<text transform="matrix(1 0 0 1 273.5 112.75)" font-family="'MyriadPro-Regular'" font-size="6">740</text>
+	<text transform="matrix(1 0 0 1 287 173.25)" font-family="'MyriadPro-Regular'" font-size="6">190</text>
+	<text transform="matrix(1 0 0 1 287 161.75)" font-family="'MyriadPro-Regular'" font-size="6">192</text>
+	<text transform="matrix(1 0 0 1 304 163.5)" font-family="'MyriadPro-Regular'" font-size="6">196</text>
+	<text transform="matrix(1 0 0 1 300.5 162.75)" font-family="'MyriadPro-Regular'" font-size="6">194</text>
+	<text transform="matrix(1 0 0 1 294.5 183.5)" font-family="'MyriadPro-Regular'" font-size="6">198</text>
+	<text transform="matrix(1 0 0 1 302 184.5)" font-family="'MyriadPro-Regular'" font-size="6">199</text>
+	<text transform="matrix(1 0 0 1 146.25 111)" font-family="'MyriadPro-Regular'" font-size="6">508.1</text>
+	<text transform="matrix(1 0 0 1 136.5 102)" font-family="'MyriadPro-Regular'" font-size="6">406</text>
+	<text transform="matrix(1 0 0 1 90.5 95.5)" font-family="'MyriadPro-Regular'" font-size="6">424</text>
+	<text transform="matrix(1 0 0 1 79 79.75)" font-family="'MyriadPro-Regular'" font-size="6">431</text>
+	<text transform="matrix(1 0 0 1 99 79.75)" font-family="'MyriadPro-Regular'" font-size="6">432</text>
+	<text transform="matrix(1 0 0 1 120 78.75)" font-family="'MyriadPro-Regular'" font-size="6">434</text>
+	<text transform="matrix(1 0 0 1 142.25 75.75)" font-family="'MyriadPro-Regular'" font-size="6">436</text>
+	<text transform="matrix(1 0 0 1 143.5 49.75)" font-family="'MyriadPro-Regular'" font-size="6">438</text>
+	<text transform="matrix(1 0 0 1 142.5 24.25)" font-family="'MyriadPro-Regular'" font-size="6">450</text>
+	<text transform="matrix(1 0 0 1 159.75 3.75)" font-family="'MyriadPro-Regular'" font-size="6">080</text>
+	<text transform="matrix(1 0 0 1 167 12.5)" font-family="'MyriadPro-Regular'" font-size="6">568</text>
+	<text transform="matrix(1 0 0 1 169.25 62.5)" font-family="'MyriadPro-Regular'" font-size="6">566</text>
+	<text transform="matrix(1 0 0 1 191.75 63.25)" font-family="'MyriadPro-Regular'" font-size="6">562</text>
+	<text transform="matrix(1 0 0 1 210 63.75)" font-family="'MyriadPro-Regular'" font-size="6">560</text>
+	<text transform="matrix(1 0 0 1 220.25 63.25)" font-family="'MyriadPro-Regular'" font-size="6">552</text>
+	<text transform="matrix(1 0 0 1 222.75 63)" font-family="'MyriadPro-Regular'" font-size="6">542</text>
+	<text transform="matrix(1 0 0 1 253.75 53)" font-family="'MyriadPro-Regular'" font-size="6">540</text>
+	<text transform="matrix(1 0 0 1 237.25 69.75)" font-family="'MyriadPro-Regular'" font-size="6">538</text>
+	<text transform="matrix(1 0 0 1 227.5 70.25)" font-family="'MyriadPro-Regular'" font-size="6">537</text>
+	<text transform="matrix(1 0 0 1 221.5 71)" font-family="'MyriadPro-Regular'" font-size="6">535</text>
+	<text transform="matrix(1 0 0 1 205.25 69.75)" font-family="'MyriadPro-Regular'" font-size="6">534.1</text>
+	<text transform="matrix(1 0 0 1 187.5 70)" font-family="'MyriadPro-Regular'" font-size="6">534</text>
+	<text transform="matrix(1 0 0 1 166.5 69.25)" font-family="'MyriadPro-Regular'" font-size="6">533</text>
+	<text transform="matrix(1 0 0 1 150.75 68.25)" font-family="'MyriadPro-Regular'" font-size="6">532</text>
+	<text transform="matrix(1 0 0 1 150.5 75.5)" font-family="'MyriadPro-Regular'" font-size="6">531</text>
+	<text transform="matrix(1 0 0 1 253.75 43.5)" font-family="'MyriadPro-Regular'" font-size="6">544</text>
+	<text transform="matrix(1 0 0 1 254 26.75)" font-family="'MyriadPro-Regular'" font-size="6">576</text>
+	<text transform="matrix(1 0 0 1 257 21.25)" font-family="'MyriadPro-Regular'" font-size="6">085</text>
+	<text transform="matrix(1 0 0 1 281 57.75)" font-family="'MyriadPro-Regular'" font-size="6">600</text>
+	<text transform="matrix(1 0 0 1 321.75 168.5)" font-family="'MyriadPro-Regular'" font-size="6">800</text>
+	<text transform="matrix(1 0 0 1 173.75 162.75)" font-family="'MyriadPro-Regular'" font-size="6">362</text>
 </g>
 </svg>
