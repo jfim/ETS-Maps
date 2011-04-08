@@ -16,8 +16,7 @@ import net.miginfocom.swing.MigLayout;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -32,10 +31,17 @@ import java.util.Comparator;
  */
 public class NavigationPanel extends JPanel {
 	private EventList<Leg> routeLegs = new BasicEventList<Leg>();
+    private NavigableMap map;
+    private MapDisplayComponent mapDisplayComponent;
+    private JComboBox originComboBox;
+    private JComboBox destinationComboBox;
 
-	@Inject
-	public NavigationPanel(final NavigableMap map, final MapDisplayComponent mapDisplayComponent) {
-		setLayout(new MigLayout("wrap 2", "[][grow, fill]", "[][][][][][grow,fill]"));
+    @Inject
+	public NavigationPanel(NavigableMap navigableMap, MapDisplayComponent mapDisplayComponent) {
+        map = navigableMap;
+        this.mapDisplayComponent = mapDisplayComponent;
+
+        setLayout(new MigLayout("wrap 2", "[][grow, fill]", "[][][][][][grow,fill]"));
 
         add(new JLabel(new ImageIcon(NavigationPanel.class.getClassLoader().getResource("etsmaps-logo.png"))), "span");
 
@@ -48,41 +54,35 @@ public class NavigationPanel extends JPanel {
             }
         });
 
+        KeyListener keyListener = new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    navigate();
+                }
+            }
+        };
+
 		add(new JLabel("De"));
 
-		final JComboBox originComboBox = new JComboBox(new EventComboBoxModel<Landmark>(sortedLandmarks));
+        originComboBox = new JComboBox(new EventComboBoxModel<Landmark>(sortedLandmarks));
 		add(originComboBox);
-
         AutoCompleteDecorator.decorate(originComboBox);
+        originComboBox.getEditor().getEditorComponent().addKeyListener(keyListener);
 
 		add(new JLabel("Vers"));
 
-		final JComboBox destinationComboBox = new JComboBox(new EventComboBoxModel<Landmark>(sortedLandmarks));
+        destinationComboBox = new JComboBox(new EventComboBoxModel<Landmark>(sortedLandmarks));
 		add(destinationComboBox);
-
         AutoCompleteDecorator.decorate(destinationComboBox);
+        destinationComboBox.getEditor().getEditorComponent().addKeyListener(keyListener);
 
 		final JButton button = new JButton("Naviguer");
 		add(button, "span 2, alignx right");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Route route = map.getRouteBetweenLandmarks((Landmark) originComboBox.getSelectedItem(),
-						(Landmark) destinationComboBox.getSelectedItem());
-
-				ArrayList<Leg> legs = new ArrayList<Leg>();
-
-				for (int i = 0; i < route.getLegCount(); ++i) {
-					legs.add(route.getLeg(i));
-				}
-
-				ReadWriteLock lock = routeLegs.getReadWriteLock();
-				lock.writeLock().lock();
-				routeLegs.clear();
-				routeLegs.addAll(legs);
-				lock.writeLock().unlock();
-
-				mapDisplayComponent.overlayRoute(route);
-			}
+                navigate();
+            }
 		});
 
 		add(new JLabel("Directions"), "span 2");
@@ -110,4 +110,23 @@ public class NavigationPanel extends JPanel {
 				}));
 		add(new JScrollPane(table), "width 100%, span 2");
 	}
+
+    public void navigate() {
+        Route route = map.getRouteBetweenLandmarks((Landmark) originComboBox.getSelectedItem(),
+                (Landmark) destinationComboBox.getSelectedItem());
+
+        ArrayList<Leg> legs = new ArrayList<Leg>();
+
+        for (int i = 0; i < route.getLegCount(); ++i) {
+            legs.add(route.getLeg(i));
+        }
+
+        ReadWriteLock lock = routeLegs.getReadWriteLock();
+        lock.writeLock().lock();
+        routeLegs.clear();
+        routeLegs.addAll(legs);
+        lock.writeLock().unlock();
+
+        mapDisplayComponent.overlayRoute(route);
+    }
 }
