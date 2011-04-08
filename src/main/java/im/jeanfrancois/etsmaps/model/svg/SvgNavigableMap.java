@@ -16,6 +16,7 @@ import im.jeanfrancois.etsmaps.ui.svg.SvgMapComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;
@@ -549,5 +550,13 @@ public class SvgNavigableMap implements NavigableMap {
         float dy = y2 - y1;
 
         unitsPerMetre = (float) Math.sqrt((dx * dx) + (dy * dy));
+    }
+
+    public void drawLandmarks(Graphics2D g) {
+        g.setColor(Color.GREEN);
+
+        for (SvgLandmark landmark : landmarks) {
+            g.fillOval((int)landmark.getX() - 2, (int)landmark.getY() - 2, 2, 2);
+        }
     }
 }

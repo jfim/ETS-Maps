@@ -35,6 +35,7 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
     private SVGDiagram diagram;
     private AffineTransform transform = new AffineTransform();
     private MouseEvent startDragEvent = null;
+    private SvgNavigableMap map;
 
     @SuppressWarnings({"unchecked"})
     @Inject
@@ -42,6 +43,7 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
                            SvgNavigableMap map) {
         diagram = map.getDiagram();
         this.exceptionDisplayer = exceptionDisplayer;
+        this.map = map;
 
         final MouseAdapter mouseAdapter = new MouseAdapter() {
             @Override
@@ -160,6 +162,8 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
         } catch (SVGException e) {
             exceptionDisplayer.displayException(e, this);
         }
+
+        // map.drawLandmarks(g2d);
 
         g2d.setColor(Color.RED);
         g2d.setStroke(new BasicStroke(3.0f));
