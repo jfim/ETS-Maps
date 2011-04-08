@@ -556,7 +556,20 @@ public class SvgNavigableMap implements NavigableMap {
         g.setColor(Color.GREEN);
 
         for (SvgLandmark landmark : landmarks) {
-            g.fillOval((int)landmark.getX() - 2, (int)landmark.getY() - 2, 2, 2);
+            g.fillOval((int)landmark.getX() - 2, (int)landmark.getY() - 2, 4, 4);
+        }
+    }
+
+    public void drawNavigation(Graphics2D g) {
+        g.setColor(Color.BLUE);
+
+        for (NavigationEdge edge : edges) {
+            g.drawLine((int)edge.getFirst().getX(), (int)edge.getFirst().getY(), (int)edge.getSecond().getX(), (int)edge.getSecond().getY());
+        }
+
+        g.setColor(Color.YELLOW);
+        for (NavigationNode node : nodes) {
+            g.fillOval((int)node.getX() - 2, (int)node.getY() - 2, 4, 4);
         }
     }
 }

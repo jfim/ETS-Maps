@@ -164,6 +164,7 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
         }
 
         // map.drawLandmarks(g2d);
+        //map.drawNavigation(g2d);
 
         g2d.setColor(Color.RED);
         g2d.setStroke(new BasicStroke(3.0f));
