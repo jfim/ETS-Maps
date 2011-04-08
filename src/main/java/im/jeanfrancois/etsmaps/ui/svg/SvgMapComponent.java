@@ -17,7 +17,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Path2D;
+import java.awt.geom.Point2D;
 
 
 /**
@@ -26,158 +28,141 @@ import java.awt.geom.Path2D;
  * @author jfim
  */
 public class SvgMapComponent extends JComponent implements MapDisplayComponent {
-	private static final boolean DEBUG = true;
-	private static final Logger logger = LoggerFactory.getLogger(SvgMapComponent.class);
-	private Path2D.Float routeShape = new Path2D.Float();
-	private final ExceptionDisplayer exceptionDisplayer;
-	private MouseEvent lastMouseEvent = null;
-	private SVGDiagram diagram;
-	private boolean dirty = true;
-	private boolean fastUpdate = false;
-	private double scaleFactor = 1.0;
-	private double xTranslation = 0.0;
-	private double yTranslation = 0.0;
+    private static final boolean DEBUG = true;
+    private static final Logger logger = LoggerFactory.getLogger(SvgMapComponent.class);
+    private Path2D.Float routeShape = new Path2D.Float();
+    private final ExceptionDisplayer exceptionDisplayer;
+    private SVGDiagram diagram;
+    private AffineTransform transform = new AffineTransform();
+    private MouseEvent startDragEvent = null;
 
-	@SuppressWarnings({"unchecked"})
-	@Inject
-	public SvgMapComponent(ExceptionDisplayer exceptionDisplayer,
-	                       SvgNavigableMap map) {
-		diagram = map.getDiagram();
-		this.exceptionDisplayer = exceptionDisplayer;
+    @SuppressWarnings({"unchecked"})
+    @Inject
+    public SvgMapComponent(ExceptionDisplayer exceptionDisplayer,
+                           SvgNavigableMap map) {
+        diagram = map.getDiagram();
+        this.exceptionDisplayer = exceptionDisplayer;
 
-		final MouseAdapter adapter = new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				lastMouseEvent = e;
-			}
+        final MouseAdapter mouseAdapter = new MouseAdapter() {
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e) {
+                try {
+                    int wheelRotation = e.getWheelRotation();
+                    Point p = e.getPoint();
+                    if (wheelRotation > 0) {
+                        Point2D p1 = transformPoint(p);
+                        transform.scale(1 / 1.2, 1 / 1.2);
+                        Point2D p2 = transformPoint(p);
+                        transform.translate(p2.getX() - p1.getX(), p2.getY() - p1.getY());
+                    } else {
+                        Point2D p1 = transformPoint(p);
+                        transform.scale(1.2, 1.2);
+                        Point2D p2 = transformPoint(p);
+                        transform.translate(p2.getX() - p1.getX(), p2.getY() - p1.getY());
+                    }
+                    SwingUtilities.invokeLater(new Runnable() {
+                        public void run() {
+                            repaint();
+                        }
+                    });
+                } catch (NoninvertibleTransformException ex) {
+                    ex.printStackTrace();
+                }
+            }
 
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				xTranslation -= (lastMouseEvent.getX() - e.getX());
-				yTranslation -= (lastMouseEvent.getY() - e.getY());
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                try {
+                    if (startDragEvent == null)
+                        return;
+                    Point dragStartScreen = startDragEvent.getPoint();
+                    Point dragEndScreen = e.getPoint();
+                    Point2D.Float dragStart = transformPoint(dragStartScreen);
+                    Point2D.Float dragEnd = transformPoint(dragEndScreen);
+                    double dx = dragEnd.getX() - dragStart.getX();
+                    double dy = dragEnd.getY() - dragStart.getY();
+                    transform.translate(dx, dy);
+                    startDragEvent = e;
+                    SwingUtilities.invokeLater(new Runnable() {
+                        public void run() {
+                            repaint();
+                        }
+                    });
+                } catch (NoninvertibleTransformException ex) {
+                    ex.printStackTrace();
+                }
+            }
 
-				if (DEBUG) {
-					logger.debug("Requesting repaint");
-					logger.debug("xTranslation = " + xTranslation);
-					logger.debug("yTranslation = " + yTranslation);
-				}
+            @Override
+            public void mousePressed(MouseEvent e) {
+                startDragEvent = e;
+            }
 
-				fastUpdate = false;
-				dirty = true;
-				repaint();
-			}
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                startDragEvent = null;
+                repaint();
+            }
+        };
 
-			@Override
-			public void mouseWheelMoved(MouseWheelEvent e) {
-				scaleFactor *= Math.pow(1.1, -e.getWheelRotation());
-				dirty = true;
-				repaint();
-			}
+        addMouseMotionListener(mouseAdapter);
+        addMouseListener(mouseAdapter);
+        addMouseWheelListener(mouseAdapter);
 
-			@Override
-			public void mouseDragged(MouseEvent e) {
-				xTranslation -= (lastMouseEvent.getX() - e.getX());
-				yTranslation -= (lastMouseEvent.getY() - e.getY());
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                repaint();
+            }
+        });
+    }
 
-				if (DEBUG) {
-					logger.debug("Requesting repaint");
-					logger.debug("xTranslation = " + xTranslation);
-					logger.debug("yTranslation = " + yTranslation);
-				}
+    private Point2D.Float transformPoint(Point p1) throws NoninvertibleTransformException {
+        AffineTransform inverse = transform.createInverse();
 
-				fastUpdate = true;
-				dirty = true;
-				repaint();
+        Point2D.Float p2 = new Point2D.Float();
+        inverse.transform(p1, p2);
+        return p2;
+    }
 
-				lastMouseEvent = e;
-			}
-		};
+    public void overlayRoute(Route route) {
+        routeShape = new Path2D.Float();
 
-		addMouseMotionListener(adapter);
-		addMouseListener(adapter);
-		addMouseWheelListener(adapter);
-	}
+        if ((route == null) || (route.getLegCount() == 0)) {
+            return;
+        }
 
-	public void overlayRoute(Route route) {
-		routeShape = new Path2D.Float();
+        Leg leg = route.getLeg(0);
+        routeShape.moveTo(leg.getOrigin().getX(), leg.getOrigin().getY());
+        routeShape.lineTo(leg.getDestination().getX(),
+                leg.getDestination().getY());
 
-		if ((route == null) || (route.getLegCount() == 0)) {
-			return;
-		}
+        for (int i = 1; i < route.getLegCount(); ++i) {
+            leg = route.getLeg(i);
+            routeShape.lineTo(leg.getDestination().getX(),
+                    leg.getDestination().getY());
+        }
 
-		Leg leg = route.getLeg(0);
-		routeShape.moveTo(leg.getOrigin().getX(), leg.getOrigin().getY());
-		routeShape.lineTo(leg.getDestination().getX(),
-				leg.getDestination().getY());
+        repaint();
+    }
 
-		for (int i = 1; i < route.getLegCount(); ++i) {
-			leg = route.getLeg(i);
-			routeShape.lineTo(leg.getDestination().getX(),
-					leg.getDestination().getY());
-		}
+    @Override
+    protected void paintComponent(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
 
-		dirty = true;
-		repaint();
-	}
+        if (DEBUG) {
+            logger.debug("Repainting");
+        }
 
-	@Override
-	protected void paintComponent(Graphics g) {
-		if (dirty) {
-			Graphics2D g2d = (Graphics2D) g;
+        g2d.setTransform(transform);
 
-			if (fastUpdate) {
-				g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-						RenderingHints.VALUE_ANTIALIAS_OFF);
-			} else {
-				g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-						RenderingHints.VALUE_ANTIALIAS_ON);
-			}
+        try {
+            diagram.render(g2d);
+        } catch (SVGException e) {
+            exceptionDisplayer.displayException(e, this);
+        }
 
-			AffineTransform transform = new AffineTransform();
-			transform.setToScale(scaleFactor, scaleFactor);
-			transform.translate(xTranslation, yTranslation);
-
-			if (DEBUG) {
-				logger.debug("Repainting");
-			}
-
-			g2d.setTransform(transform);
-
-			try {
-				diagram.render(g2d);
-			} catch (SVGException e) {
-				exceptionDisplayer.displayException(e, this);
-			}
-
-			g2d.setColor(Color.RED);
-			g2d.setStroke(new BasicStroke(3.0f));
-			g2d.draw(routeShape);
-
-			dirty = false;
-		}
-	}
-
-	@Override
-	public void setBounds(Rectangle r) {
-		dirty = true;
-		super.setBounds(r);
-	}
-
-	@Override
-	public void setBounds(int x, int y, int width, int height) {
-		dirty = true;
-		super.setBounds(x, y, width, height);
-	}
-
-	@Override
-	public void setSize(Dimension d) {
-		dirty = true;
-		super.setSize(d);
-	}
-
-	@Override
-	public void setSize(int width, int height) {
-		dirty = true;
-		super.setSize(width, height);
-	}
+        g2d.setColor(Color.RED);
+        g2d.setStroke(new BasicStroke(3.0f));
+        g2d.draw(routeShape);
+    }
 }
