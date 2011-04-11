@@ -93,7 +93,7 @@
 <g id="Scale_1m">
 	<line fill="none" stroke="#45FF00" stroke-miterlimit="10" x1="99.25" y1="76.5" x2="103" y2="76.5"/>
 </g>
-<g id="Navigation_1_">
+<g id="Landmarks">
 	<text transform="matrix(1 0 0 1 78 240)" font-family="'MyriadPro-Regular'" font-size="6">240</text>
 	<text transform="matrix(1 0 0 1 105.25 240)" font-family="'MyriadPro-Regular'" font-size="6">238</text>
 	<text transform="matrix(1 0 0 1 116.5 240)" font-family="'MyriadPro-Regular'" font-size="6">230</text>
