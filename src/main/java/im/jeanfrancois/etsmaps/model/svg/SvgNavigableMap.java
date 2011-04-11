@@ -347,7 +347,7 @@ public class SvgNavigableMap implements NavigableMap {
         }
 
         List<SVGElement> elementsToExplore = new ArrayList<SVGElement>();
-        elementsToExplore.add(diagram.getRoot());
+        elementsToExplore.add(findTopLevelGroup("Landmarks"));
 
         while (!elementsToExplore.isEmpty()) {
             // Get and remove the last element
