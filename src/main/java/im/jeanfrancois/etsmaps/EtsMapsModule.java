@@ -6,6 +6,8 @@ import im.jeanfrancois.etsmaps.model.NavigableMap;
 import im.jeanfrancois.etsmaps.model.svg.SvgNavigableMap;
 import im.jeanfrancois.etsmaps.ui.MapDisplayComponent;
 import im.jeanfrancois.etsmaps.ui.NavigationPanel;
+import im.jeanfrancois.etsmaps.ui.StatusDisplayer;
+import im.jeanfrancois.etsmaps.ui.StatusDisplayerComponent;
 import im.jeanfrancois.etsmaps.ui.svg.SvgMapComponent;
 
 
@@ -14,8 +16,11 @@ import im.jeanfrancois.etsmaps.ui.svg.SvgMapComponent;
  */
 public class EtsMapsModule extends AbstractModule {
 	protected void configure() {
-		bind(NavigableMap.class).to(SvgNavigableMap.class).in(Scopes.SINGLETON);
-		bind(MapDisplayComponent.class).to(SvgMapComponent.class).in(Scopes.SINGLETON);
+        bind(SvgNavigableMap.class).in(Scopes.SINGLETON);
+		bind(NavigableMap.class).to(SvgNavigableMap.class);
+        bind(SvgMapComponent.class).in(Scopes.SINGLETON);
+		bind(MapDisplayComponent.class).to(SvgMapComponent.class);
 		bind(NavigationPanel.class).in(Scopes.SINGLETON);
+        bind(StatusDisplayer.class).to(StatusDisplayerComponent.class);
 	}
 }

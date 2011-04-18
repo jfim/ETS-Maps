@@ -12,6 +12,7 @@ import im.jeanfrancois.etsmaps.model.Landmark;
 import im.jeanfrancois.etsmaps.model.Leg;
 import im.jeanfrancois.etsmaps.model.NavigableMap;
 import im.jeanfrancois.etsmaps.model.Route;
+import im.jeanfrancois.etsmaps.ui.StatusDisplayer;
 import im.jeanfrancois.etsmaps.ui.svg.SvgMapComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,21 +42,25 @@ public class SvgNavigableMap implements NavigableMap {
     private ArrayList<SvgLandmark> landmarks = new ArrayList<SvgLandmark>();
     private ArrayList<NavigationNode> nodes = new ArrayList<NavigationNode>();
     private ExceptionDisplayer exceptionDisplayer;
+    private StatusDisplayer statusDisplayer;
     private SVGDiagram diagram;
     private UndirectedGraph<NavigationNode, DefaultArc<NavigationNode>> graph = new UndirectedGraph<NavigationNode, DefaultArc<NavigationNode>>();
     private float unitsPerMetre = 1.0f;
 
     @Inject
-    public SvgNavigableMap(ExceptionDisplayer exceptionDisplayer) {
+    public SvgNavigableMap(ExceptionDisplayer exceptionDisplayer, StatusDisplayer statusDisplayer) {
         this.exceptionDisplayer = exceptionDisplayer;
+        this.statusDisplayer = statusDisplayer;
 
         // Create the SVG universe to load the SVG files
+        statusDisplayer.setStatus("Chargement des fichiers SVG...");
         SVGUniverse universe = new SVGUniverse();
 
         // Load a hardcoded diagram
         loadDiagram(universe, "/plan-ets-1a.svg");
 
         // Extract landmarks from the map and remove their visual representation from the diagram
+        statusDisplayer.setStatus("Creation du graphe...");
         loadLandmarks();
 
         // Remove scale information from the map
@@ -336,6 +341,7 @@ public class SvgNavigableMap implements NavigableMap {
                 logger.debug("Loaded diagram in " +
                         (System.currentTimeMillis() - start) + " ms");
             }
+            statusDisplayer.setStatus("Chargé le diagramme en " + (System.currentTimeMillis() - start) + " millisecondes");
         } catch (URISyntaxException e) {
             this.exceptionDisplayer.displayException(e);
         }
@@ -486,6 +492,7 @@ public class SvgNavigableMap implements NavigableMap {
             logger.debug("Loaded " + nodes.size() + " node(s) and " +
                     edges.size() + " edge(s).");
         }
+        statusDisplayer.setStatus("Chargé " + nodes.size() + " noeuds et " + edges.size() + " arêtes.");
     }
 
     private void loadScaleInfo() {
