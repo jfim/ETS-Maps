@@ -110,7 +110,7 @@ public class NavigationPanel extends JPanel {
 				}));
 		add(new JScrollPane(table), "width 100%, span 2");
 
-        final JCheckBox showDebugStuffCheckBox = new JCheckBox("Afficher les information de déboguage");
+        final JCheckBox showDebugStuffCheckBox = new JCheckBox("Afficher les informations de déboguage");
         add(showDebugStuffCheckBox, "span");
         mapDisplayComponent.setDebugStuffVisible(showDebugStuffCheckBox.isSelected());
 
