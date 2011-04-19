@@ -37,6 +37,7 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
     private MouseEvent startDragEvent = null;
     private SvgNavigableMap map;
     private boolean debugStuffVisible;
+    private boolean stillOnDefaultTransform = true;
 
     @SuppressWarnings({"unchecked"})
     @Inject
@@ -49,6 +50,8 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
         final MouseAdapter mouseAdapter = new MouseAdapter() {
             @Override
             public void mouseWheelMoved(MouseWheelEvent e) {
+                stillOnDefaultTransform = false;
+
                 try {
                     int wheelRotation = e.getWheelRotation();
                     Point p = e.getPoint();
@@ -75,6 +78,8 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
 
             @Override
             public void mouseDragged(MouseEvent e) {
+                stillOnDefaultTransform = false;
+
                 try {
                     if (startDragEvent == null)
                         return;
@@ -175,6 +180,8 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
             exceptionDisplayer.displayException(e, this);
         }
 
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
         if (debugStuffVisible) {
             map.drawLandmarks(g2d);
             map.drawNavigation(g2d);
@@ -209,6 +216,14 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
     @Override
     public void setBounds(int x, int y, int width, int height) {
         super.setBounds(x, y, width, height);
+        if(stillOnDefaultTransform) {
+            float xScaleFactor = width / diagram.getWidth();
+            float yScaleFactor = height / diagram.getHeight();
+            float scaleFactor = Math.min(xScaleFactor, yScaleFactor);
+
+            transform = new AffineTransform();
+            transform.scale(scaleFactor, scaleFactor);
+        }
         repaint();
     }
 
