@@ -37,7 +37,7 @@ public class NavigationPanel extends JPanel {
     private JComboBox destinationComboBox;
 
     @Inject
-	public NavigationPanel(NavigableMap navigableMap, MapDisplayComponent mapDisplayComponent) {
+	public NavigationPanel(NavigableMap navigableMap, final MapDisplayComponent mapDisplayComponent) {
         map = navigableMap;
         this.mapDisplayComponent = mapDisplayComponent;
 
@@ -109,6 +109,17 @@ public class NavigationPanel extends JPanel {
 					}
 				}));
 		add(new JScrollPane(table), "width 100%, span 2");
+
+        final JCheckBox showDebugStuffCheckBox = new JCheckBox("Afficher les information de déboguage");
+        add(showDebugStuffCheckBox, "span");
+        mapDisplayComponent.setDebugStuffVisible(showDebugStuffCheckBox.isSelected());
+
+        showDebugStuffCheckBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mapDisplayComponent.setDebugStuffVisible(showDebugStuffCheckBox.isSelected());
+            }
+        });
 	}
 
     public void navigate() {

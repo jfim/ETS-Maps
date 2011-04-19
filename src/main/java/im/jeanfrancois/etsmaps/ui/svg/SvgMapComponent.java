@@ -36,6 +36,7 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
     private AffineTransform transform = new AffineTransform();
     private MouseEvent startDragEvent = null;
     private SvgNavigableMap map;
+    private boolean debugStuffVisible;
 
     @SuppressWarnings({"unchecked"})
     @Inject
@@ -148,14 +149,25 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
+    public void setDebugStuffVisible(boolean debugStuffVisible) {
+        this.debugStuffVisible = debugStuffVisible;
+        repaint();
+    }
+
+    @Override
+    public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
+        //g.clearRect(0, 0, getWidth(), getHeight());
 
         if (DEBUG) {
             logger.debug("Repainting");
         }
 
-        g2d.setTransform(transform);
+        AffineTransform initialTransform = g2d.getTransform();
+        AffineTransform combinedTransform = new AffineTransform(initialTransform);
+        combinedTransform.concatenate(transform);
+
+        g2d.setTransform(combinedTransform);
 
         try {
             diagram.render(g2d);
@@ -163,11 +175,64 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
             exceptionDisplayer.displayException(e, this);
         }
 
-        // map.drawLandmarks(g2d);
-        //map.drawNavigation(g2d);
+        if (debugStuffVisible) {
+            map.drawLandmarks(g2d);
+            map.drawNavigation(g2d);
+        }
 
         g2d.setColor(Color.RED);
         g2d.setStroke(new BasicStroke(3.0f));
         g2d.draw(routeShape);
+
+        g2d.setTransform(initialTransform);
+        if (debugStuffVisible) {
+            g2d.setColor(Color.BLACK);
+            final double scaleX = transform.getScaleX();
+            final double translateX = transform.getTranslateX();
+            final double translateY = transform.getTranslateY();
+
+            g2d.drawString("S " + Double.toString(scaleX), 0, 16);
+            g2d.drawString("X " + Double.toString(translateX), 0, 32);
+            g2d.drawString("Y " + Double.toString(translateY), 0, 48);
+
+            System.out.println("S " + scaleX + " X " + translateX + " Y " + translateY);
+            System.out.println("W " + getWidth() + " H " + getHeight());
+        }
+    }
+
+    @Override
+    public void setBounds(Rectangle r) {
+        super.setBounds(r);
+        repaint();
+    }
+
+    @Override
+    public void setBounds(int x, int y, int width, int height) {
+        super.setBounds(x, y, width, height);
+        repaint();
+    }
+
+    @Override
+    public void setLocation(int x, int y) {
+        super.setLocation(x, y);
+        repaint();
+    }
+
+    @Override
+    public void setLocation(Point p) {
+        super.setLocation(p);    //To change body of overridden methods use File | Settings | File Templates.
+        repaint();
+    }
+
+    @Override
+    public void setSize(int width, int height) {
+        super.setSize(width, height);    //To change body of overridden methods use File | Settings | File Templates.
+        repaint();
+    }
+
+    @Override
+    public void setSize(Dimension d) {
+        super.setSize(d);    //To change body of overridden methods use File | Settings | File Templates.
+        repaint();
     }
 }
