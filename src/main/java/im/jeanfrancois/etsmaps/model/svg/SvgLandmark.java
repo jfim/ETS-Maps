@@ -19,7 +19,7 @@ public class SvgLandmark implements Landmark {
 	private float x;
 	private float y;
 
-	public SvgLandmark(Text landmarkText) {
+	public SvgLandmark(String prefix, Text landmarkText) {
 		textSvgNode = landmarkText;
 
 		// Extract the node name from the embedded TSPAN element
@@ -28,7 +28,7 @@ public class SvgLandmark implements Landmark {
 
 			for (Object childNode : childNodes) {
 				if (childNode instanceof Tspan) {
-					name = ((Tspan) childNode).getText();
+					name = prefix + ((Tspan) childNode).getText();
 				}
 			}
 		}
@@ -39,7 +39,7 @@ public class SvgLandmark implements Landmark {
 
 			for (Object content : contents) {
 				if (content instanceof String) {
-					name = (String) content;
+					name = prefix + content;
 				}
 			}
 		}

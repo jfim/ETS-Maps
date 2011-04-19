@@ -61,7 +61,7 @@ public class SvgNavigableMap implements NavigableMap {
 
         // Extract landmarks from the map and remove their visual representation from the diagram
         statusDisplayer.setStatus("Creation du graphe...");
-        loadLandmarks();
+        loadLandmarks("A-1");
 
         // Remove scale information from the map
         loadScaleInfo();
@@ -347,7 +347,7 @@ public class SvgNavigableMap implements NavigableMap {
         }
     }
 
-    private void loadLandmarks() {
+    private void loadLandmarks(String prefix) {
         if (DEBUG) {
             logger.debug("Loading landmarks...");
         }
@@ -366,7 +366,7 @@ public class SvgNavigableMap implements NavigableMap {
                 try {
                     lastElement.getParent().removeChild(lastElement);
 
-                    final SvgLandmark landmark = new SvgLandmark((Text) lastElement);
+                    final SvgLandmark landmark = new SvgLandmark(prefix, (Text) lastElement);
                     landmarks.add(landmark);
 
                     if (DEBUG) {
