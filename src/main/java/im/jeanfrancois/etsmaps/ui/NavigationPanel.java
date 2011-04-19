@@ -41,7 +41,7 @@ public class NavigationPanel extends JPanel {
         map = navigableMap;
         this.mapDisplayComponent = mapDisplayComponent;
 
-        setLayout(new MigLayout("wrap 2", "[][grow, fill]", "[][][][][][grow,fill]"));
+        setLayout(new MigLayout("wrap 2", "[][grow, fill]", "[][][][][][grow,fill][]"));
 
         add(new JLabel(new ImageIcon(NavigationPanel.class.getClassLoader().getResource("etsmaps-logo.png"))), "span");
 
