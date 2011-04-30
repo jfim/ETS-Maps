@@ -1,5 +1,6 @@
 package im.jeanfrancois.etsmaps.ui;
 
+import im.jeanfrancois.etsmaps.model.Landmark;
 import im.jeanfrancois.etsmaps.model.Route;
 
 /**
@@ -10,4 +11,6 @@ import im.jeanfrancois.etsmaps.model.Route;
 public interface MapDisplayComponent {
 	public void overlayRoute(Route route);
     public void setDebugStuffVisible(boolean debugStuffVisible);
+    public void setOrigin(Landmark origin);
+    public void setDestination(Landmark destination);
 }

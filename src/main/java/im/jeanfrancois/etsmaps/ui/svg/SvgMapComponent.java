@@ -4,13 +4,16 @@ import com.google.inject.Inject;
 import com.kitfox.svg.SVGDiagram;
 import com.kitfox.svg.SVGException;
 import im.jeanfrancois.etsmaps.ExceptionDisplayer;
+import im.jeanfrancois.etsmaps.model.Landmark;
 import im.jeanfrancois.etsmaps.model.Leg;
 import im.jeanfrancois.etsmaps.model.Route;
+import im.jeanfrancois.etsmaps.model.svg.SvgLandmark;
 import im.jeanfrancois.etsmaps.model.svg.SvgNavigableMap;
 import im.jeanfrancois.etsmaps.ui.MapDisplayComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -20,6 +23,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 
 /**
@@ -38,6 +43,12 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
     private SvgNavigableMap map;
     private boolean debugStuffVisible;
     private boolean stillOnDefaultTransform = true;
+
+    private SvgLandmark origin;
+    private SvgLandmark destination;
+
+    private BufferedImage markerA = null;
+    private BufferedImage markerB = null;
 
     @SuppressWarnings({"unchecked"})
     @Inject
@@ -122,6 +133,13 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
                 repaint();
             }
         });
+
+        try {
+            markerA = ImageIO.read(SvgMapComponent.class.getClassLoader().getResource("marker-a.png"));
+            markerB = ImageIO.read(SvgMapComponent.class.getClassLoader().getResource("marker-b.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private Point2D.Float transformPoint(Point p1) throws NoninvertibleTransformException {
@@ -191,10 +209,17 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
         g2d.setStroke(new BasicStroke(3.0f));
         g2d.draw(routeShape);
 
+        final double scaleX = transform.getScaleX();
+        if(origin != null) {
+            g2d.drawImage(markerA, (int)(origin.getX() - 32 / scaleX), (int)(origin.getY() - 54 / scaleX), (int)(68 / scaleX), (int)(68 / scaleX), null);
+        }
+        if(destination != null) {
+            g2d.drawImage(markerB, (int)(destination.getX() - 32 / scaleX), (int)(destination.getY() - 54 / scaleX), (int)(68 / scaleX), (int)(68 / scaleX), null);
+        }
+
         g2d.setTransform(initialTransform);
         if (debugStuffVisible) {
             g2d.setColor(Color.BLACK);
-            final double scaleX = transform.getScaleX();
             final double translateX = transform.getTranslateX();
             final double translateY = transform.getTranslateY();
 
@@ -248,6 +273,16 @@ public class SvgMapComponent extends JComponent implements MapDisplayComponent {
     @Override
     public void setSize(Dimension d) {
         super.setSize(d);    //To change body of overridden methods use File | Settings | File Templates.
+        repaint();
+    }
+
+    public void setOrigin(Landmark origin) {
+        this.origin = (SvgLandmark) origin;
+        repaint();
+    }
+
+    public void setDestination(Landmark destination) {
+        this.destination = (SvgLandmark) destination;
         repaint();
     }
 }
